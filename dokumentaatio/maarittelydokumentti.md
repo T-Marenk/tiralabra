@@ -11,6 +11,7 @@ Ohjelma tulee saamaan syötteenä aina nykyisen pelilaudan tilanteen, jota tarka
 Tavoitteena on, että algoritmi tulee toimimaan ajassa O(n) ja tilavaativuus olisi myös O(n).
 
 Lähteet:
+
 [1] Wikipedia, Expectiminimax. 2020. URL:[https://en.wikipedia.org/wiki/Expectiminimax](https://en.wikipedia.org/wiki/Expectiminimax)
 
 [2] Wikipedia, 2048 (video game). 2022. URL:[https://en.wikipedia.org/wiki/2048_(video_game)](https://en.wikipedia.org/wiki/2048_(video_game))
