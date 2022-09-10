@@ -1,3 +1,5 @@
+# Määrittelydokumentti
+
 Tietojenkäsittelytieteen kandiohjelma (TKT)
 
 Projekti tulee olemaan tehty pythonilla. En hallitse muita ohjelmointikieliä niin, että voisin tehdä niillä vertaisarviointeja. Dokumentaation sekä muun projektin kielenä tulee olemaan suomi.
