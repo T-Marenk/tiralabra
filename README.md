@@ -51,12 +51,21 @@ poetry run invoke start
 
 ## Testaaminen
 
+### Testien suorittaminen
+
 Suorita testit komennolla
 ```bash
 poetry run invoke test
 ```
 
-Kattavuus raportin saa suorittamalla komennon
+### Kattavuusraportti
+
+1. Kerää tiedot kattavuus raporttia varten suorittamalla
+```bash
+poetry run invoke coverage
+```
+
+2. Luo raportti suorittamalla komento
 ```bash
 poetry run invoke coverage-report
 ```
