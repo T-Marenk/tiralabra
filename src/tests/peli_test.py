@@ -3,7 +3,10 @@ from peli.peli import *
 
 class TestPeli(unittest.TestCase):
     def setUp(self):
-        pass
+        self.taulukko1 = [[2,4,0,0],[2,0,2,0],[0,0,0,0],[2,0,0,0]]
+        self.taulukko2 = [[2,4,0,0],[8,0,0,0],[4,0,0,0],[2,0,0,0]]
+        self.taulukko3 = [[2,0,0,0],[8,0,0,0],[4,0,0,0],[2,0,4,0]]
+        self.taulukko4 = [[0,0,0,2],[0,0,0,0],[0,0,0,4],[2,4,8,4]]
 
     def test_uusi_peli_taulukko_luotu_oikein(self):
         taulukko = uusi_peli()
@@ -18,3 +21,51 @@ class TestPeli(unittest.TestCase):
                     a += 1
 
         self.assertEqual(a, 2)
+
+    def test_katsoo_oikein_voiko_liikkua_ylos(self):
+        arvo1 = katso_ylos_alas("ylos", self.taulukko1)
+        arvo2 = katso_ylos_alas("ylos", self.taulukko2)
+
+        self.assertEqual(arvo1, True)
+        self.assertEqual(arvo2, False)
+
+    def test_katsoo_oikein_voiko_liikkua_alas(self):
+        arvo1 = katso_ylos_alas("alas", self.taulukko1)
+        arvo2 = katso_ylos_alas("alas", self.taulukko3)
+
+        self.assertEqual(arvo1, True)
+        self.assertEqual(arvo2, False)
+
+    def test_katsoo_oikein_voiko_liikkua_vasen(self):
+        arvo1 = katso_vasen_oikea("vasen", self.taulukko1)
+        arvo2 = katso_vasen_oikea("vasen", self.taulukko2)
+
+        self.assertEqual(arvo1, True)
+        self.assertEqual(arvo2, False)
+
+    def test_katsoo_oikein_voiko_liikkua_oikea(self):
+        arvo1 = katso_vasen_oikea("oikea", self.taulukko1)
+        arvo2 = katso_vasen_oikea("oikea", self.taulukko4)
+
+        self.assertEqual(arvo1, True)
+        self.assertEqual(arvo2, False)
+
+    def test_liikkuu_oikein_vasen(self):
+        taulukko = liiku_vasen(self.taulukko1)
+
+        self.assertEqual(taulukko, [[2,4,0,0],[4,0,0,0],[0,0,0,0],[2,0,0,0]])
+
+    def test_liikkuu_oikein_oikea(self):
+        taulukko = liiku_oikea(self.taulukko1)
+
+        self.assertEqual(taulukko, [[0,0,2,4],[0,0,0,4],[0,0,0,0],[0,0,0,2]])
+
+    def test_liikkuu_oikein_ylos(self):
+        taulukko = liiku_ylos(self.taulukko1)
+
+        self.assertEqual(taulukko, [[4,4,2,0],[2,0,0,0],[0,0,0,0],[0,0,0,0]])
+
+    def test_liikkuu_oikein_alas(self):
+        taulukko = liiku_alas(self.taulukko1)
+
+        self.assertEqual(taulukko, [[0,0,0,0],[0,0,0,0],[2,0,0,0],[4,4,2,0]])

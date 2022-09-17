@@ -230,18 +230,3 @@ def main_ratkoja():
         elif komento == "lopeta":
             break
         uusi_palikka(taulukko)
-
-if __name__ == "__main__":
-    #taulukko = uusi_peli()
-    #tulosta_taulukko(taulukko)
-    #taulukko = uusi_palikka(taulukko)
-    #tulosta_taulukko(taulukko)
-    taulukko = [[2,4,0,0],[2,0,2,0],[0,0,0,0],[2,0,0,0]]
-    #print(katso_vasen_oikea("vasen", taulukko))
-    #print(katso_vasen_oikea("oikea", taulukko))
-    #print(katso_ylos_alas("ylos", taulukko))
-    #print(katso_ylos_alas("alas", taulukko))
-    tulosta_taulukko(taulukko)
-    taulukko = liiku_ylos(taulukko)
-    tulosta_taulukko(taulukko)
-
