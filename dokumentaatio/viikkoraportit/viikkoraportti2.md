@@ -13,6 +13,10 @@ Tämän lisäksi olen kirjoittanut ohjeet työn kopioimista ja suorittamista var
 
 Tämän viikon aikana opin luomaan 2048-pelin.
 
+## Käytetty aika
+
+Tällä viikolla käytin aikaa projektin edistämiseen noin 9 tuntia
+
 ## Ongelma tilanteet
 
 Olen saanut luotua pelille mielestäni hyvät funktiot, joilla se tekee siirtoja. En kuitenkaan ole täysin tyytyväinen tekemiseeni, sillä tällä hetkellä
