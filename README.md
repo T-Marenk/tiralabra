@@ -69,3 +69,4 @@ poetry run invoke coverage
 ```bash
 poetry run invoke coverage-report
 ```
+Raportti luodaan tiedostoon index.html kansioon htmlcov. Näet raportin avaamalla index.html-tiedoston.
