@@ -1,5 +1,4 @@
 from random import randint
-from tkinter import W
 from peli.liiku import liiku_vasen, liiku_oikea, liiku_ylos, liiku_alas
 from ratkoja.ratkoja import tee_paatos
 
