@@ -108,7 +108,7 @@ def liiku_ylos(taulukko: list):
                     taulukko[e_paikka][j] = i[j] * 2
                     edellinen = None
                     taulukko[k][j] = 0
-                    tyhja = j
+                    tyhja = k
     return taulukko
 
 def liiku_alas(taulukko: list):
@@ -144,5 +144,5 @@ def liiku_alas(taulukko: list):
                     taulukko[e_paikka][j] = i[j] * 2
                     edellinen = None
                     taulukko[k][j] = 0
-                    tyhja = j
+                    tyhja = k
     return taulukko

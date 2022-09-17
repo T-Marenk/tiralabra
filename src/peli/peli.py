@@ -1,6 +1,6 @@
 from random import randint
 from tkinter import W
-from liiku import liiku_vasen, liiku_oikea, liiku_ylos, liiku_alas
+from peli.liiku import liiku_vasen, liiku_oikea, liiku_ylos, liiku_alas
 
 """2048-pelin rungosta vastaava koodi
 """
@@ -59,18 +59,18 @@ def katso_ylos_alas(suunta: str, taulukko: list):
         edellinen = None
         for i in range(a,b,c):
             i = taulukko[i]
-            print(i[j])
             if i[j] == 0:
                 totuudet[k] = True
-                edellinen = i[j]
                 continue
             elif edellinen == None:
                 edellinen = i[j]
+                if totuudet[k]:
+                    return True
                 continue
             else:
-                if i[j] == edellinen and i[j] != 0:
+                if i[j] == edellinen:
                     return True
-                elif totuudet[k] == True:
+                elif totuudet[k]:
                     return True
                 edellinen = i[j]
         k += 1
@@ -89,28 +89,28 @@ def katso_vasen_oikea(suunta: str, taulukko: list):
 
     totuudet = {1: False, 2:False, 3:False, 4:False}
     if suunta == "vasen":
-        a = 1
-        b = 0
-        c = 4
-        d = 1
+        a = 0
+        b = 4
+        c = 1
     elif suunta == "oikea":
-        a = 1
-        b = 3
+        a = 3
+        b = -1
         c = -1
-        d = -1
+    k = 1
     for i in taulukko:
-        k = 1
         edellinen = None
-        for j in range(b,c,d):
+        for j in range(a,b,c):
             if i[j] == 0:
                 totuudet[k] = True
             elif edellinen == None:
                 edellinen = i[j]
+                if totuudet[k]:
+                    return True
                 continue
             else:
                 if i[j] == edellinen:
                     return True
-                elif totuudet[k] == True:
+                elif totuudet[k]:
                     return True
                 edellinen = i[j]
         k += 1
@@ -162,19 +162,49 @@ def main():
     """Peliä pyörittävä funktio
     """
 
-    pass
+    taulukko = uusi_peli()
+    while True:
+        tulosta_taulukko(taulukko)
+        mahdollisuudet = {}
+        mahdollisuudet["vasen"] = katso_vasen_oikea("vasen", taulukko)
+        mahdollisuudet["oikea"] = katso_vasen_oikea("oikea", taulukko)
+        mahdollisuudet["ylos"] = katso_ylos_alas("ylos", taulukko)
+        mahdollisuudet["alas"] = katso_ylos_alas("alas", taulukko)
+        komento = input("Komento: ")
+        if komento == "uusi":
+            taulukko = uusi_peli()
+            continue
+        elif komento == "vasen":
+            if not mahdollisuudet["vasen"]:
+                continue
+            taulukko = liiku_vasen(taulukko)
+        elif komento == "oikea":
+            if not mahdollisuudet["oikea"]:
+                continue
+            taulukko = liiku_oikea(taulukko)
+        elif komento == "ylos":
+            if not mahdollisuudet["ylos"]:
+                continue
+            taulukko = liiku_ylos(taulukko)
+        elif komento == "alas":
+            if not mahdollisuudet["alas"]:
+                continue
+            taulukko = liiku_alas(taulukko)
+        elif komento == "lopeta":
+            break
+        uusi_palikka(taulukko)
 
 if __name__ == "__main__":
     #taulukko = uusi_peli()
     #tulosta_taulukko(taulukko)
     #taulukko = uusi_palikka(taulukko)
     #tulosta_taulukko(taulukko)
-    taulukko = [[4,2,2,8],[8,0,4,0],[4,4,8,8],[2,0,16,16]]
+    taulukko = [[2,4,0,0],[2,0,2,0],[0,0,0,0],[2,0,0,0]]
     #print(katso_vasen_oikea("vasen", taulukko))
     #print(katso_vasen_oikea("oikea", taulukko))
     #print(katso_ylos_alas("ylos", taulukko))
     #print(katso_ylos_alas("alas", taulukko))
     tulosta_taulukko(taulukko)
-    taulukko = liiku_alas(taulukko)
+    taulukko = liiku_ylos(taulukko)
     tulosta_taulukko(taulukko)
 
