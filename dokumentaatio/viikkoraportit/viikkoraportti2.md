@@ -15,7 +15,7 @@ Tämän viikon aikana opin luomaan 2048-pelin.
 
 ## Käytetty aika
 
-Tällä viikolla käytin aikaa projektin edistämiseen noin 9 tuntia
+Tällä viikolla käytin aikaa projektin edistämiseen noin 10 tuntia
 
 ## Ongelma tilanteet
 
