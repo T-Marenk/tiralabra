@@ -8,4 +8,55 @@ Projektin tarkoituksena on luoda tehokas 2048-pelin ratkoja.
 
 [Määrittelydokumentti](./dokumentaatio/maarittelydokumentti.md)
 
+[Testausdokumentti](./dokumentaatio/Testaus.md)
+
+### Viikkoraportit
+
 [Viikkoraportti 1](./dokumentaatio/viikkoraportit/viikkoraportti1.md)
+
+[Viikkoraportti 2](./dokumentaatio/viikkoraportit/viikkoraportti2.md)
+
+## Ohjelman vaatimukset
+
+Projekti käyttää python-versiota 3.10. Tämän lisäksi projektissa on hyödynnetty poetrya, joka tulee olla asennettuna tietokoneella
+
+## Asennus
+
+1. Kopioi projekti tietokoneellesi
+```bash
+git clone https://github.com/T-Marenk/tiralabra.git
+```
+
+2. Mene ladattuun kansioon
+```bash
+cd tiralabra
+```
+
+3. Asenna riippuvuudet poetrylla
+```bash
+poetry install
+```
+
+4. Käynnistä ohjelma tai ratkoja
+
+Ratkojan käynnistys:
+```bash
+poetry run invoke ratkoja
+```
+
+Pelkän pelin käynnistys:
+```bash
+poetry run invoke start
+```
+
+## Testaaminen
+
+Suorita testit komennolla
+```bash
+poetry run invoke test
+```
+
+Kattavuus raportin saa suorittamalla komennon
+```bash
+poetry run invoke coverage-report
+```
