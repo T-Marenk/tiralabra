@@ -1,6 +1,18 @@
 from random import randint
 
+"""2048-pelin muodostava koodi
+"""
+
 def katso_ylos_alas(suunta: str, taulukko: list):
+    """Fuktio, joka katsoo, voiko ruudukkoa liikuttaa ylös tai alas
+
+    Args:
+        suunta: Suunta, johon ruudukon liikkuvuus tarkistetaan
+        taulukko: Peli ruudukko
+    
+    Returns:
+        Totuusarvon siitä, voiko ruudukkoa liikuttaa kyseiseen suuntaan
+    """
     totuudet = {1: False, 2:False, 3:False, 4:False}
     if suunta == "ylos":
         a = 0
@@ -35,6 +47,16 @@ def katso_ylos_alas(suunta: str, taulukko: list):
     return False
 
 def katso_vasen_oikea(suunta: str, taulukko: list):
+    """Funktio, joka katsoo, voiko ruudukkoa liikuttaa vasemmalle tai oikealle
+
+    Args:
+        suunta: Suunta, johon ruudukon liikkuvuus tarkistetaan
+        taulukko: Peli ruudukko
+    
+    Returns:
+        Totuusarvon siitä, voiko ruudukkoa liikuttaa tarkistettavaan suuntaan
+    """
+
     totuudet = {1: False, 2:False, 3:False, 4:False}
     if suunta == "vasen":
         a = 1
@@ -65,17 +87,12 @@ def katso_vasen_oikea(suunta: str, taulukko: list):
         k += 1
     return False
 
-def voiko_liikkua(vasen: bool, oikea: bool, ylos: bool, alas: bool, taulukko: list):
-    if vasen:
-        return katso_vasen_oikea("vasen", taulukko)
-    elif oikea:
-        return katso_vasen_oikea("oikea", taulukko)
-    elif ylos:
-        return katso_ylos_alas("ylos", taulukko)
-    elif alas:
-        return katso_ylos_alas("alas", taulukko)
-
 def uusi_peli():
+    """Funktio, joka luo uuden pelin
+    
+    Returns:
+        Uuden peli-ruudukon
+    """
     taulukko = [[0]*4 for i in range(4)]
     edellinen = None
     for i in range(2):
@@ -100,11 +117,25 @@ def uusi_peli():
     return taulukko
 
 def tulosta_taulukko(taulukko):
+    """Funktio, joka tulostaa peli-ruudukon
+
+    Args:
+        taulukko: Peli-ruudukko
+    """
+
     for i in taulukko:
         print(i)
     print()
 
 def uusi_palikka(taulukko):
+    """Funktio, joka lisää peli-ruudukkoon uuden palikan
+    
+    Args:
+        taulukko: Peli-ruudukko
+    Returns:
+        Peli-ruudukon, johon on lisätty uusi palikka
+    """
+
     mahdolliset = []
     maara = 0
     a = 0
@@ -128,15 +159,18 @@ def uusi_palikka(taulukko):
 
 
 def main():
+    """Peliä pyörittävä funktio
+    """
+
     taulukko = uusi_peli()
     tulosta_taulukko(taulukko)
     taulukko = uusi_palikka(taulukko)
     tulosta_taulukko(taulukko)
     taulukko = [[4,2,2,8],[4,0,0,0],[0,0,0,0],[0,0,0,0]]
-    print(voiko_liikkua(True, False, False, False, taulukko))
-    print(voiko_liikkua(False, True, False, False, taulukko))
-    print(voiko_liikkua(False, False, True, False, taulukko))
-    print(voiko_liikkua(False, False, False, True, taulukko))
+    print(katso_vasen_oikea("vasen", taulukko))
+    print(katso_vasen_oikea("oikea", taulukko))
+    print(katso_ylos_alas("ylos", taulukko))
+    print(katso_ylos_alas("alas", taulukko))
 
 if __name__ == "__main__":
     main()
