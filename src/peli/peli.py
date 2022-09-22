@@ -206,7 +206,7 @@ def main_ratkoja():
         mahdollisuudet["oikea"] = katso_vasen_oikea("oikea", taulukko)
         mahdollisuudet["ylos"] = katso_ylos_alas("ylos", taulukko)
         mahdollisuudet["alas"] = katso_ylos_alas("alas", taulukko)
-        komento = tee_paatos(mahdollisuudet)
+        komento = tee_paatos(taulukko.copy(), mahdollisuudet)
         if komento == "uusi":
             taulukko = uusi_peli()
             continue
