@@ -69,30 +69,23 @@ def arvo(taulukko, z):
         t[tyhja[0]][tyhja[1]] = 4
         uudet_taulukot.append(t)
     t2_arvot = 0
+    t4_arvot = 0
     i = 0
     for t in uudet_taulukot:
         if i % 2 != 0:
-            i += 1
-            continue
-        t1,t2,t3,t4 = Taulukko.listat_kopioi(t)
-        t2_arvot += arvo(liiku_vasen(t1), z-1)
-        t2_arvot += arvo(liiku_oikea(t2), z-1)
-        t2_arvot += arvo(liiku_ylos(t3), z-1)
-        t2_arvot += arvo(liiku_alas(t4), z-1)
+            t1,t2,t3,t4 = Taulukko.listat_kopioi(t)
+            t4_arvot += arvo(liiku_vasen(t1), z-1)
+            t4_arvot += arvo(liiku_oikea(t2), z-1)
+            t4_arvot += arvo(liiku_ylos(t3), z-1)
+            t4_arvot += arvo(liiku_alas(t4), z-1)
+        else:
+            t1,t2,t3,t4 = Taulukko.listat_kopioi(t)
+            t2_arvot += arvo(liiku_vasen(t1), z-1)
+            t2_arvot += arvo(liiku_oikea(t2), z-1)
+            t2_arvot += arvo(liiku_ylos(t3), z-1)
+            t2_arvot += arvo(liiku_alas(t4), z-1)
         i += 1
-    t4_arvot = 0
-    j = 0
-    for t in uudet_taulukot:
-        if j % 2 == 0:
-            j += 1
-            continue
-        t1,t2,t3,t4 = Taulukko.listat_kopioi(t)
-        t4_arvot += arvo(liiku_vasen(t1), z-1)
-        t4_arvot += arvo(liiku_oikea(t2), z-1)
-        t4_arvot += arvo(liiku_ylos(t3), z-1)
-        t4_arvot += arvo(liiku_alas(t4), z-1)
-        j += 1
-    return 0.9*(t2_arvot/i*4)+0.1*(t4_arvot/j*4)
+    return 0.9*(t2_arvot/i*4)+0.1*(t4_arvot/i*4)
 
 def tee_paatos(taulukko: list, mahdollisuudet: dict):
     """Ratkojan aloittava funktio
