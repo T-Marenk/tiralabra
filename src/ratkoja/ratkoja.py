@@ -1,3 +1,4 @@
+from cmath import tau
 from random import randint
 from peli.liiku import liiku_alas, liiku_oikea, liiku_vasen, liiku_ylos
 """Ratkojasta vastaava koodi
@@ -63,10 +64,11 @@ def arvo(taulukko, z):
             if i % 2 != 0:
                 i += 1
                 continue
-            t2_arvot += arvo(liiku_vasen(t.copy()), z-1)
-            t2_arvot += arvo(liiku_oikea(t.copy()), z-1)
-            t2_arvot += arvo(liiku_ylos(t.copy()), z-1)
-            t2_arvot += arvo(liiku_alas(t.copy()), z-1)
+            t1,t2,t3,t4 = listat(t)
+            t2_arvot += arvo(liiku_vasen(t1), z-1)
+            t2_arvot += arvo(liiku_oikea(t2), z-1)
+            t2_arvot += arvo(liiku_ylos(t3), z-1)
+            t2_arvot += arvo(liiku_alas(t4), z-1)
             i += 1
         t4_arvot = 0
         j = 0
@@ -74,24 +76,33 @@ def arvo(taulukko, z):
             if j % 2 == 0:
                 j += 1
                 continue
-            t4_arvot += arvo(liiku_vasen(t.copy()), z-1)
-            t4_arvot += arvo(liiku_oikea(t.copy()), z-1)
-            t4_arvot += arvo(liiku_ylos(t.copy()), z-1)
-            t4_arvot += arvo(liiku_alas(t.copy()), z-1)
+            t1,t2,t3,t4 = listat(t)
+            t4_arvot += arvo(liiku_vasen(t1), z-1)
+            t4_arvot += arvo(liiku_oikea(t2), z-1)
+            t4_arvot += arvo(liiku_ylos(t3), z-1)
+            t4_arvot += arvo(liiku_alas(t4), z-1)
             j += 1
         return 0.9*(t2_arvot/i*4)+0.1*(t4_arvot/j*4)
     
+def listat(taulukko: list):
+    t1 = []
+    t2 = []
+    t3 = []
+    t4 = []
+    for i in taulukko:
+        t1.append(i.copy())
+        t2.append(i.copy())
+        t3.append(i.copy())
+        t4.append(i.copy())
+    return t1,t2,t3,t4
 
 def tee_paatos(taulukko: list, mahdollisuudet: dict):
     liikkeet = [0,0,0,0]
-    liikkeet[0] = arvo(liiku_vasen(taulukko.copy()), 3)
-    print(0)
-    liikkeet[1] = arvo(liiku_oikea(taulukko.copy()), 3)
-    print(1)
-    liikkeet[2] = arvo(liiku_ylos(taulukko.copy()), 3)
-    print(2)
-    liikkeet[3] = arvo(liiku_alas(taulukko.copy()), 3)
-    print(3)
+    t1,t2,t3,t4 = listat(taulukko)    
+    liikkeet[0] = arvo(liiku_vasen(t1), 3)
+    liikkeet[1] = arvo(liiku_oikea(t2), 3)
+    liikkeet[2] = arvo(liiku_ylos(t3), 3)
+    liikkeet[3] = arvo(liiku_alas(t4), 3)
     isoin = max(liikkeet)
     suunta = liikkeet.index(isoin)
     if suunta == 0:
