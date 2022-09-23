@@ -94,7 +94,7 @@ def arvo(taulukko, z):
             if katso_ylos_alas("alas", t4):
                 t2_arvot += arvo(liiku_alas(t4), z-1)
         i += 1
-    return 0.9*(t2_arvot/i*4)+0.1*(t4_arvot/i*4)
+    return 0.9*(t2_arvot/(i*4))+0.1*(t4_arvot/(i*4))
 
 def tee_paatos(taulukko: list, mahdollisuudet: dict):
     """Ratkojan aloittava funktio
@@ -117,7 +117,10 @@ def tee_paatos(taulukko: list, mahdollisuudet: dict):
     if mahdollisuudet["alas"]:
         liikkeet[3] = arvo(liiku_alas(t4), 2)
     isoin = max(liikkeet)
-    suunta = liikkeet.index(isoin)
+    if isoin > 0:
+        suunta = liikkeet.index(isoin)
+    else:
+        suunta = 4
     if suunta == 0:
         return "vasen"
     elif suunta == 1:
@@ -126,3 +129,5 @@ def tee_paatos(taulukko: list, mahdollisuudet: dict):
         return "ylos"
     elif suunta == 3:
         return "alas"
+    else:
+        return "lopeta"
