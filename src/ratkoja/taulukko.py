@@ -23,7 +23,22 @@ class Taulukko:
             t4.append(i.copy())
         return t1,t2,t3,t4
 
-    def tyhjat(self, taulukko: list):
+    def kopioi(taulukko: list):
+        """Kopioi nykyisen ruudukon kerran
+        
+        Args:
+            taulukko: Peli ruudukko
+            
+        Returns:
+            Kopion ruudukosta
+        """
+
+        t = []
+        for i in taulukko:
+            t.append(i.copy())
+        return t
+ 
+    def tyhjat(taulukko: list):
         """Etsii nykyiseltä laudalta tyhjat paikat
         Args:
             taulukko: peliruudukko

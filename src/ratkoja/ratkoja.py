@@ -17,7 +17,6 @@ def kay_lapi(taulukko: list):
     pisteet = 0
     isoin = 0
     isoin_paikka = None
-    tyhjat_paikat = []
     for y in range(4):
         i = taulukko[y]
         if y < 3:
@@ -33,7 +32,6 @@ def kay_lapi(taulukko: list):
                 isoin = a
             elif a == 0:
                 pisteet += 1
-                tyhjat_paikat.append((x,y))
                 continue
             if x < 3:
                 if b == 0:
@@ -45,20 +43,9 @@ def kay_lapi(taulukko: list):
                 else:
                     pisteet -= 3
             if y < 3 and c == a:
-                pisteet += 2
-    uudet_taulukot = []
-    for a in tyhjat_paikat:
-        u2_taulukko = []
-        u4_taulukko = []
-        for i in range(4):
-            u2_taulukko.append(taulukko[i].copy())
-            u4_taulukko.append(taulukko[i].copy())
-        u2_taulukko[a[1]][a[0]] = 2
-        u4_taulukko[a[1]][a[0]] = 4
-        uudet_taulukot.append(u2_taulukko)
-        uudet_taulukot.append(u4_taulukko)
+                pisteet += 2 
     pisteet += isoin_paikka
-    return pisteet, uudet_taulukot
+    return pisteet
 
 def arvo(taulukko, z):
     """Funktio, jolla kutsutaan seuraavien taulukoiden läpikäynti ja kutsutaan taulukon pisteytys
@@ -69,35 +56,43 @@ def arvo(taulukko, z):
         Nykyisen ruudukon pisteet tai painotetun keskiarvon tulevien ruudukoiden pisteistä
     """
 
-    pisteet, uudet_taulukot = kay_lapi(taulukko)
     if z == 0:
-        return pisteet
-    else:
-        t2_arvot = 0
-        i = 0
-        for t in uudet_taulukot:
-            if i % 2 != 0:
-                i += 1
-                continue
-            t1,t2,t3,t4 = Taulukko.listat_kopioi(t)
-            t2_arvot += arvo(liiku_vasen(t1), z-1)
-            t2_arvot += arvo(liiku_oikea(t2), z-1)
-            t2_arvot += arvo(liiku_ylos(t3), z-1)
-            t2_arvot += arvo(liiku_alas(t4), z-1)
+        return kay_lapi(taulukko)
+    
+    tyhat_paikat = Taulukko.tyhjat(taulukko)
+    uudet_taulukot = []
+    for tyhja in tyhat_paikat:
+        t = Taulukko.kopioi(taulukko)
+        t[tyhja[0]][tyhja[1]] = 2
+        uudet_taulukot.append(t)
+        t = Taulukko.kopioi(taulukko)
+        t[tyhja[0]][tyhja[1]] = 4
+        uudet_taulukot.append(t)
+    t2_arvot = 0
+    i = 0
+    for t in uudet_taulukot:
+        if i % 2 != 0:
             i += 1
-        t4_arvot = 0
-        j = 0
-        for t in uudet_taulukot:
-            if j % 2 == 0:
-                j += 1
-                continue
-            t1,t2,t3,t4 = Taulukko.listat_kopioi(t)
-            t4_arvot += arvo(liiku_vasen(t1), z-1)
-            t4_arvot += arvo(liiku_oikea(t2), z-1)
-            t4_arvot += arvo(liiku_ylos(t3), z-1)
-            t4_arvot += arvo(liiku_alas(t4), z-1)
+            continue
+        t1,t2,t3,t4 = Taulukko.listat_kopioi(t)
+        t2_arvot += arvo(liiku_vasen(t1), z-1)
+        t2_arvot += arvo(liiku_oikea(t2), z-1)
+        t2_arvot += arvo(liiku_ylos(t3), z-1)
+        t2_arvot += arvo(liiku_alas(t4), z-1)
+        i += 1
+    t4_arvot = 0
+    j = 0
+    for t in uudet_taulukot:
+        if j % 2 == 0:
             j += 1
-        return 0.9*(t2_arvot/i*4)+0.1*(t4_arvot/j*4)
+            continue
+        t1,t2,t3,t4 = Taulukko.listat_kopioi(t)
+        t4_arvot += arvo(liiku_vasen(t1), z-1)
+        t4_arvot += arvo(liiku_oikea(t2), z-1)
+        t4_arvot += arvo(liiku_ylos(t3), z-1)
+        t4_arvot += arvo(liiku_alas(t4), z-1)
+        j += 1
+    return 0.9*(t2_arvot/i*4)+0.1*(t4_arvot/j*4)
 
 def tee_paatos(taulukko: list, mahdollisuudet: dict):
     """Ratkojan aloittava funktio
