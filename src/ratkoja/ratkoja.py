@@ -1,4 +1,4 @@
-from peli.liiku import liiku_alas, liiku_oikea, liiku_vasen, liiku_ylos
+from peli.liiku import liiku_alas, liiku_oikea, liiku_vasen, liiku_ylos, katso_vasen_oikea, katso_ylos_alas
 from ratkoja.taulukko import Taulukko
 
 """Ratkojasta vastaava koodi
@@ -14,6 +14,7 @@ def kay_lapi(taulukko: list):
     Returns:
         Ruudukon pisteet sekä uudet listat
     """
+
     pisteet = 0
     isoin = 0
     isoin_paikka = None
@@ -55,9 +56,9 @@ def arvo(taulukko, z):
     Returns:
         Nykyisen ruudukon pisteet tai painotetun keskiarvon tulevien ruudukoiden pisteistä
     """
-
     if z == 0:
-        return kay_lapi(taulukko)
+        b =  kay_lapi(taulukko)
+        return b
     
     tyhat_paikat = Taulukko.tyhjat(taulukko)
     uudet_taulukot = []
@@ -74,16 +75,24 @@ def arvo(taulukko, z):
     for t in uudet_taulukot:
         if i % 2 != 0:
             t1,t2,t3,t4 = Taulukko.listat_kopioi(t)
-            t4_arvot += arvo(liiku_vasen(t1), z-1)
-            t4_arvot += arvo(liiku_oikea(t2), z-1)
-            t4_arvot += arvo(liiku_ylos(t3), z-1)
-            t4_arvot += arvo(liiku_alas(t4), z-1)
+            if katso_vasen_oikea("vasen", t1):
+                t4_arvot += arvo(liiku_vasen(t1), z-1)
+            if katso_vasen_oikea("oikea", t2):
+                t4_arvot += arvo(liiku_oikea(t2), z-1)
+            if katso_ylos_alas("ylos", t3):
+                t4_arvot += arvo(liiku_ylos(t3), z-1)
+            if katso_ylos_alas("alas", t4):
+                t4_arvot += arvo(liiku_alas(t4), z-1)
         else:
             t1,t2,t3,t4 = Taulukko.listat_kopioi(t)
-            t2_arvot += arvo(liiku_vasen(t1), z-1)
-            t2_arvot += arvo(liiku_oikea(t2), z-1)
-            t2_arvot += arvo(liiku_ylos(t3), z-1)
-            t2_arvot += arvo(liiku_alas(t4), z-1)
+            if katso_vasen_oikea("vasen", t1):
+                t2_arvot += arvo(liiku_vasen(t1), z-1)
+            if katso_vasen_oikea("oikea", t2):
+                t2_arvot += arvo(liiku_oikea(t2), z-1)
+            if katso_ylos_alas("ylos", t3):
+                t2_arvot += arvo(liiku_ylos(t3), z-1)
+            if katso_ylos_alas("alas", t4):
+                t2_arvot += arvo(liiku_alas(t4), z-1)
         i += 1
     return 0.9*(t2_arvot/i*4)+0.1*(t4_arvot/i*4)
 
@@ -98,11 +107,15 @@ def tee_paatos(taulukko: list, mahdollisuudet: dict):
     """
 
     liikkeet = [0,0,0,0]
-    t1,t2,t3,t4 = Taulukko.listat_kopioi(taulukko)    
-    liikkeet[0] = arvo(liiku_vasen(t1), 3)
-    liikkeet[1] = arvo(liiku_oikea(t2), 3)
-    liikkeet[2] = arvo(liiku_ylos(t3), 3)
-    liikkeet[3] = arvo(liiku_alas(t4), 3)
+    t1,t2,t3,t4 = Taulukko.listat_kopioi(taulukko)
+    if mahdollisuudet["vasen"]: 
+        liikkeet[0] = arvo(liiku_vasen(t1), 2)
+    if mahdollisuudet["oikea"]:
+        liikkeet[1] = arvo(liiku_oikea(t2), 2)
+    if mahdollisuudet["ylos"]:
+        liikkeet[2] = arvo(liiku_ylos(t3), 2)
+    if mahdollisuudet["alas"]:
+        liikkeet[3] = arvo(liiku_alas(t4), 2)
     isoin = max(liikkeet)
     suunta = liikkeet.index(isoin)
     if suunta == 0:

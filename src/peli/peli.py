@@ -1,5 +1,5 @@
 from random import randint
-from peli.liiku import liiku_vasen, liiku_oikea, liiku_ylos, liiku_alas
+from peli.liiku import liiku_vasen, liiku_oikea, liiku_ylos, liiku_alas, katso_ylos_alas, katso_vasen_oikea
 from ratkoja.ratkoja import tee_paatos
 
 """2048-pelin rungosta vastaava koodi
@@ -33,88 +33,6 @@ def uusi_peli():
                 edellinen = (sijoitus_y,sijoitus_x) 
                 break
     return taulukko
-
-def katso_ylos_alas(suunta: str, taulukko: list):
-    """Fuktio, joka katsoo, voiko ruudukkoa liikuttaa ylös tai alas
-
-    Args:
-        suunta: Suunta, johon ruudukon liikkuvuus tarkistetaan
-        taulukko: Peli ruudukko
-    
-    Returns:
-        Totuusarvon siitä, voiko ruudukkoa liikuttaa kyseiseen suuntaan
-    """
-
-    totuudet = {1: False, 2:False, 3:False, 4:False}
-    if suunta == "ylos":
-        a = 0
-        b = 4
-        c = 1
-    elif suunta == "alas":
-        a = 3
-        b = -1
-        c = -1
-    k = 1
-    for j in range(4):
-        edellinen = None
-        for i in range(a,b,c):
-            i = taulukko[i]
-            if i[j] == 0:
-                totuudet[k] = True
-                continue
-            elif edellinen == None:
-                edellinen = i[j]
-                if totuudet[k]:
-                    return True
-                continue
-            else:
-                if i[j] == edellinen:
-                    return True
-                elif totuudet[k]:
-                    return True
-                edellinen = i[j]
-        k += 1
-    return False
-
-def katso_vasen_oikea(suunta: str, taulukko: list):
-    """Funktio, joka katsoo, voiko ruudukkoa liikuttaa vasemmalle tai oikealle
-
-    Args:
-        suunta: Suunta, johon ruudukon liikkuvuus tarkistetaan
-        taulukko: Peli ruudukko
-    
-    Returns:
-        Totuusarvon siitä, voiko ruudukkoa liikuttaa tarkistettavaan suuntaan
-    """
-
-    totuudet = {1: False, 2:False, 3:False, 4:False}
-    if suunta == "vasen":
-        a = 0
-        b = 4
-        c = 1
-    elif suunta == "oikea":
-        a = 3
-        b = -1
-        c = -1
-    k = 1
-    for i in taulukko:
-        edellinen = None
-        for j in range(a,b,c):
-            if i[j] == 0:
-                totuudet[k] = True
-            elif edellinen == None:
-                edellinen = i[j]
-                if totuudet[k]:
-                    return True
-                continue
-            else:
-                if i[j] == edellinen:
-                    return True
-                elif totuudet[k]:
-                    return True
-                edellinen = i[j]
-        k += 1
-    return False
 
 def tulosta_taulukko(taulukko):
     """Funktio, joka tulostaa peli-ruudukon
