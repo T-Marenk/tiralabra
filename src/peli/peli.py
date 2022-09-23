@@ -1,13 +1,15 @@
 from random import randint
-from peli.liiku import liiku_vasen, liiku_oikea, liiku_ylos, liiku_alas, katso_ylos_alas, katso_vasen_oikea
+from peli.liiku import liiku_vasen, liiku_oikea, liiku_ylos, liiku_alas
+from peli.liiku import katso_ylos_alas, katso_vasen_oikea
 from ratkoja.ratkoja import tee_paatos
 
 """2048-pelin rungosta vastaava koodi
 """
 
+
 def uusi_peli():
     """Funktio, joka luo uuden pelin
-    
+
     Returns:
         Uuden peli-ruudukon
     """
@@ -15,24 +17,23 @@ def uusi_peli():
     edellinen = None
     for i in range(2):
         while True:
-            sijoitus_y = randint(0,3)
-            sijoitus_x = randint(0,3)
+            sijoitus_y = randint(0, 3)
+            sijoitus_x = randint(0, 3)
             valinta = randint(1, 10)
             if valinta == 9:
                 uusi = 4
             else:
                 uusi = 2
             if edellinen:
-                if (sijoitus_y,sijoitus_x)==edellinen:
+                if (sijoitus_y, sijoitus_x) == edellinen:
                     continue
-                else:
-                    taulukko[sijoitus_y][sijoitus_x] = uusi
-                    break
-            else:
                 taulukko[sijoitus_y][sijoitus_x] = uusi
-                edellinen = (sijoitus_y,sijoitus_x) 
                 break
+            taulukko[sijoitus_y][sijoitus_x] = uusi
+            edellinen = (sijoitus_y, sijoitus_x)
+            break
     return taulukko
+
 
 def tulosta_taulukko(taulukko):
     """Funktio, joka tulostaa peli-ruudukon
@@ -45,9 +46,10 @@ def tulosta_taulukko(taulukko):
         print(i)
     print()
 
+
 def uusi_palikka(taulukko):
     """Funktio, joka lisää peli-ruudukkoon uuden palikan
-    
+
     Args:
         taulukko: Peli-ruudukko
     Returns:
@@ -56,15 +58,15 @@ def uusi_palikka(taulukko):
 
     mahdolliset = []
     maara = 0
-    a = 0
+    rivi = 0
     for i in taulukko:
-        b = 0
+        paikka = 0
         for j in i:
             if j == 0:
                 maara += 1
-                mahdolliset.append((a,b))
-            b += 1
-        a += 1
+                mahdolliset.append((rivi, paikka))
+            paikka += 1
+        rivi += 1
     sijoitus = randint(0, maara-1)
     valinta = randint(1, 10)
     if valinta == 9:
@@ -91,7 +93,6 @@ def main():
         komento = input("Komento: ")
         if komento == "uusi":
             taulukko = uusi_peli()
-            continue
         elif komento == "vasen":
             if not mahdollisuudet["vasen"]:
                 continue
@@ -112,10 +113,11 @@ def main():
             break
         uusi_palikka(taulukko)
 
+
 def main_ratkoja():
     """Ratkojan peliä pyörittävä funktio
     """
-    
+
     taulukko = uusi_peli()
     while True:
         tulosta_taulukko(taulukko)
@@ -131,7 +133,7 @@ def main_ratkoja():
         if komento == "uusi":
             taulukko = uusi_peli()
             continue
-        elif komento == "vasen":
+        if komento == "vasen":
             if not mahdollisuudet["vasen"]:
                 continue
             taulukko = liiku_vasen(taulukko)

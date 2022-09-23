@@ -1,12 +1,17 @@
 import unittest
 from peli.peli import *
 
+
 class TestPeli(unittest.TestCase):
     def setUp(self):
-        self.taulukko1 = [[2,4,0,0],[2,0,2,0],[0,0,0,0],[2,0,0,0]]
-        self.taulukko2 = [[2,4,0,0],[8,0,0,0],[4,0,0,0],[2,0,0,0]]
-        self.taulukko3 = [[2,0,0,0],[8,0,0,0],[4,0,0,0],[2,0,4,0]]
-        self.taulukko4 = [[0,0,0,2],[0,0,0,0],[0,0,0,4],[2,4,8,4]]
+        self.taulukko1 = [[2, 4, 0, 0], [
+            2, 0, 2, 0], [0, 0, 0, 0], [2, 0, 0, 0]]
+        self.taulukko2 = [[2, 4, 0, 0], [
+            8, 0, 0, 0], [4, 0, 0, 0], [2, 0, 0, 0]]
+        self.taulukko3 = [[2, 0, 0, 0], [
+            8, 0, 0, 0], [4, 0, 0, 0], [2, 0, 4, 0]]
+        self.taulukko4 = [[0, 0, 0, 2], [
+            0, 0, 0, 0], [0, 0, 0, 4], [2, 4, 8, 4]]
 
     def test_uusi_peli_taulukko_luotu_oikein(self):
         taulukko = uusi_peli()

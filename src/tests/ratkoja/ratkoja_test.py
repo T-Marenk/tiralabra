@@ -1,16 +1,24 @@
 import unittest
 from ratkoja.ratkoja import *
 
+
 class TestRatkoja(unittest.TestCase):
     def setUp(self):
-        self.mahdollisuudet1 = {"vasen": True, "oikea": False, "ylos": False, "alas": False}
-        self.mahdollisuudet2 = {"vasen": False, "oikea": True, "ylos": False, "alas": False}
-        self.mahdollisuudet3 = {"vasen": False, "oikea": False, "ylos": True, "alas": False}
-        self.mahdollisuudet4 = {"vasen": False, "oikea": False, "ylos": False, "alas": True}
-        self.mahdollisuudet5 = {"vasen": False, "oikea": False, "ylos": False, "alas": False}
-        
-        self.taulukko1 = [[2,4,0,0],[2,0,2,0],[0,0,0,0],[2,0,0,0]]
-        self.taulukko2 = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
+        self.mahdollisuudet1 = {"vasen": True,
+                                "oikea": False, "ylos": False, "alas": False}
+        self.mahdollisuudet2 = {"vasen": False,
+                                "oikea": True, "ylos": False, "alas": False}
+        self.mahdollisuudet3 = {"vasen": False,
+                                "oikea": False, "ylos": True, "alas": False}
+        self.mahdollisuudet4 = {"vasen": False,
+                                "oikea": False, "ylos": False, "alas": True}
+        self.mahdollisuudet5 = {"vasen": False,
+                                "oikea": False, "ylos": False, "alas": False}
+
+        self.taulukko1 = [[2, 4, 0, 0], [
+            2, 0, 2, 0], [0, 0, 0, 0], [2, 0, 0, 0]]
+        self.taulukko2 = [[0, 0, 0, 0], [
+            0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
 
     def test_tee_paatos_tekee_oikean_paatoksen(self):
         suunta1 = tee_paatos(self.taulukko1, self.mahdollisuudet1)
@@ -29,7 +37,7 @@ class TestRatkoja(unittest.TestCase):
         pisteet = kay_lapi(self.taulukko1)
 
         self.assertEqual(pisteet, 16)
-    
+
     def test_arvo_palauttaa_oikean_pistemaaran(self):
         pisteet = arvo(self.taulukko1, 1)
 

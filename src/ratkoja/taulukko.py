@@ -21,14 +21,14 @@ class Taulukko:
             t2.append(i.copy())
             t3.append(i.copy())
             t4.append(i.copy())
-        return t1,t2,t3,t4
+        return t1, t2, t3, t4
 
     def kopioi(taulukko: list):
         """Kopioi nykyisen ruudukon kerran
-        
+
         Args:
             taulukko: Peli ruudukko
-            
+
         Returns:
             Kopion ruudukosta
         """
@@ -37,12 +37,12 @@ class Taulukko:
         for i in taulukko:
             t.append(i.copy())
         return t
- 
+
     def tyhjat(taulukko: list):
         """Etsii nykyiseltä laudalta tyhjat paikat
         Args:
             taulukko: peliruudukko
-            
+
         Returns:
             Listan, jossa on tyhjien paikkojen koordinaatit tupleina
         """
@@ -52,5 +52,5 @@ class Taulukko:
             for j in range(4):
                 a = taulukko[i][j]
                 if a == 0:
-                    tyhjat_paikat.append((i,j))
+                    tyhjat_paikat.append((i, j))
         return tyhjat_paikat
