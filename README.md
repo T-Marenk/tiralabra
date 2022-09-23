@@ -2,7 +2,7 @@
 
 Tämä projekti on luotu Helsingin yliopiston kurssia *Aineopintojen harjoitustyö: Tietorakenteet ja algoritmit* varten. 
 
-Projektin tarkoituksena on luoda tehokas 2048-pelin ratkoja.
+Projektin tarkoituksena on luoda mahdollisimman tehokas 2048-pelin ratkoja hyödyntämällä _Expectiminimax_-algoritmia.
 
 ## Dokumentaatio
 
@@ -12,9 +12,11 @@ Projektin tarkoituksena on luoda tehokas 2048-pelin ratkoja.
 
 ### Viikkoraportit
 
-[Viikkoraportti 1](./dokumentaatio/viikkoraportit/viikkoraportti1.md)
+![Viikkoraportti 1](./dokumentaatio/viikkoraportit/viikkoraportti1.md)
 
-[Viikkoraportti 2](./dokumentaatio/viikkoraportit/viikkoraportti2.md)
+![Viikkoraportti 2](./dokumentaatio/viikkoraportit/viikkoraportti2.md)
+
+![Viikkoraportti 3](./dokumentaatio/viikkoraportit/viikkoraportti3.md)
 
 ## Ohjelman vaatimukset
 
@@ -70,3 +72,11 @@ poetry run invoke coverage
 poetry run invoke coverage-report
 ```
 Raportti luodaan tiedostoon index.html kansioon htmlcov. Näet raportin avaamalla index.html-tiedoston.
+
+### Pylint
+
+Koodin laatua tarkastelua varten on käytössä pylint. Suorita pylint komennolla
+
+```bash
+poetry run invoke lint
+```
