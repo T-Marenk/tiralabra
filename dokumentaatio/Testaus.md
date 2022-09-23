@@ -8,9 +8,13 @@ Ohjelman testaus on toteutettu automatisoiduilla unittesteillä
 
 Pelin toimivuudesta vastaava `peli.py`-tiedosto testataan ![TestPeli](/src/tests/peli/peli_test.py)-luokalla. Pelin liikkumisesta vastaava `liiku.py`-tiedosto testataan ![TestPeliLiikkuminen](/src/tests/liikkuminen/liiku_test.py)-luokalla.
 
+### Ratkojan testaaminen
+
+Peli-ratkojasta vastaava `ratkoja.py`-tiedosto testataan ![TestRatkoja](/src/tests/ratkoja/ratkoja_test.py)-luokalla. 
+
 ### Testikattavuus
 
-Tämän hetkinen testikattavuus on 55%
+Tämän hetkinen testikattavuus on 74%
 
 ![](./kuvat/coverage-report.png)
 
