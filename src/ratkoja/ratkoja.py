@@ -1,12 +1,19 @@
-from cmath import tau
-from random import randint
 from peli.liiku import liiku_alas, liiku_oikea, liiku_vasen, liiku_ylos
+from ratkoja.taulukko import Taulukko
+
 """Ratkojasta vastaava koodi
 """
 
 isoin_pisteet = [[7,6,5,4], [6,5,4,3], [5,4,3,2], [4,3,2,1]]
 
 def kay_lapi(taulukko: list):
+    """Funktio, joka pisteyttää nykyisen ruudukon
+
+    Args:
+        taulukko: peli-ruudukko
+    Returns:
+        Ruudukon pisteet sekä uudet listat
+    """
     pisteet = 0
     isoin = 0
     isoin_paikka = None
@@ -54,6 +61,14 @@ def kay_lapi(taulukko: list):
     return pisteet, uudet_taulukot
 
 def arvo(taulukko, z):
+    """Funktio, jolla kutsutaan seuraavien taulukoiden läpikäynti ja kutsutaan taulukon pisteytys
+
+    Args:
+        taulukko: peli-ruudukko
+    Returns:
+        Nykyisen ruudukon pisteet tai painotetun keskiarvon tulevien ruudukoiden pisteistä
+    """
+
     pisteet, uudet_taulukot = kay_lapi(taulukko)
     if z == 0:
         return pisteet
@@ -64,7 +79,7 @@ def arvo(taulukko, z):
             if i % 2 != 0:
                 i += 1
                 continue
-            t1,t2,t3,t4 = listat(t)
+            t1,t2,t3,t4 = Taulukko.listat_kopioi(t)
             t2_arvot += arvo(liiku_vasen(t1), z-1)
             t2_arvot += arvo(liiku_oikea(t2), z-1)
             t2_arvot += arvo(liiku_ylos(t3), z-1)
@@ -76,29 +91,26 @@ def arvo(taulukko, z):
             if j % 2 == 0:
                 j += 1
                 continue
-            t1,t2,t3,t4 = listat(t)
+            t1,t2,t3,t4 = Taulukko.listat_kopioi(t)
             t4_arvot += arvo(liiku_vasen(t1), z-1)
             t4_arvot += arvo(liiku_oikea(t2), z-1)
             t4_arvot += arvo(liiku_ylos(t3), z-1)
             t4_arvot += arvo(liiku_alas(t4), z-1)
             j += 1
         return 0.9*(t2_arvot/i*4)+0.1*(t4_arvot/j*4)
-    
-def listat(taulukko: list):
-    t1 = []
-    t2 = []
-    t3 = []
-    t4 = []
-    for i in taulukko:
-        t1.append(i.copy())
-        t2.append(i.copy())
-        t3.append(i.copy())
-        t4.append(i.copy())
-    return t1,t2,t3,t4
 
 def tee_paatos(taulukko: list, mahdollisuudet: dict):
+    """Ratkojan aloittava funktio
+    
+    Args:
+        taulukko: peli-ruudukko
+        mahdollisuudet: mahdollisten liikkeiden sanakirja
+    Returns:
+        Parhaan liikkumissuunnan
+    """
+
     liikkeet = [0,0,0,0]
-    t1,t2,t3,t4 = listat(taulukko)    
+    t1,t2,t3,t4 = Taulukko.listat_kopioi(taulukko)    
     liikkeet[0] = arvo(liiku_vasen(t1), 3)
     liikkeet[1] = arvo(liiku_oikea(t2), 3)
     liikkeet[2] = arvo(liiku_ylos(t3), 3)
