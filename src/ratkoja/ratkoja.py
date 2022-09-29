@@ -42,9 +42,9 @@ def kay_lapi(taulukko: list):
                 if oikea_arvo == 0:
                     continue
                 if oikea_arvo == nykyinen_arvo/2:
-                    pisteet += .2
+                    pisteet += .4
                 elif nykyinen_arvo == oikea_arvo or nykyinen_arvo >= oikea_arvo:
-                    pisteet += .3
+                    pisteet += .2
                 else:
                     pisteet -= .6
             if rivi < 3 and ala_arvo == nykyinen_arvo:
@@ -85,64 +85,22 @@ def mahdollisuus(taulukko, z):
 
     tyhat_paikat, maara = Taulukko.tyhjat(taulukko)
 
-    if z >= 3:
+    if z >= 3 and maara >= 6:
         return kay_lapi(taulukko)
-    #if z >= 4:
-    #    return kay_lapi(taulukko)
+    if z >= 4:
+        return kay_lapi(taulukko)
     if maara == 0:
-        return maksimoi(taulukko, z)
-    """
-    if z == 3 and maara >= 4:
-        pisteet = kay_lapi(taulukko)
-        return pisteet
-    if z >= 4 and maara >= 0:
-        pisteet = kay_lapi(taulukko)
-        return pisteet
-    if maara == 0:
-        pisteet = kay_lapi(taulukko)
-        return pisteet
-    """ 
+        return maksimoi(taulukko, z) 
+
     keskiarvo = 0
-    # uudet_taulukot = []
+
     for tyhja in tyhat_paikat:
         t = Taulukko.kopioi(taulukko)
         t[tyhja[0]][tyhja[1]] = 2
         keskiarvo += maksimoi(t, z)[0] * (0.9 * (1/maara))
         t = Taulukko.kopioi(taulukko)
         t[tyhja[0]][tyhja[1]] = 4
-        keskiarvo += maksimoi(t,z)[0] * (0.1 * (1/maara))
-    """
-    t2_arvot = 0
-    t4_arvot = 0
-    i = 0
-    for t in uudet_taulukot:
-        if i%2 == 0:
-            t2_arvot += maksimoi(t, z)[0] * 0.9
-        else:
-            t4_arvot += maksimoi(t, z)[0] * 0.1
-        i += 1
-        if i % 2 != 0:
-            t1, t2, t3, t4 = Taulukko.listat_kopioi(t)
-            if katso_vasen_oikea("vasen", t1):
-                t4_arvot += arvo(liiku_vasen(t1), z+1)
-            if katso_vasen_oikea("oikea", t2):
-                t4_arvot += arvo(liiku_oikea(t2), z+1)
-            if katso_ylos_alas("ylos", t3):
-                t4_arvot += arvo(liiku_ylos(t3), z+1)
-            if katso_ylos_alas("alas", t4):
-                t4_arvot += arvo(liiku_alas(t4), z+1)
-        else:
-            t1, t2, t3, t4 = Taulukko.listat_kopioi(t)
-            if katso_vasen_oikea("vasen", t1):
-                t2_arvot += arvo(liiku_vasen(t1), z+1)
-            if katso_vasen_oikea("oikea", t2):
-                t2_arvot += arvo(liiku_oikea(t2), z+1)
-            if katso_ylos_alas("ylos", t3):
-                t2_arvot += arvo(liiku_ylos(t3), z+1)
-            if katso_ylos_alas("alas", t4):
-                t2_arvot += arvo(liiku_alas(t4), z+1)
-        i += 1
-    """
+        keskiarvo += maksimoi(t,z)[0] * (0.1 * (1/maara)) 
     return keskiarvo
 
 
@@ -155,6 +113,7 @@ def tee_paatos(taulukko: list, mahdollisuudet: dict):
     Returns:
         Parhaan liikkumissuunnan
     """
+
     start = time()
     liikkeet = [0, 0, 0, 0]
     t1, t2, t3, t4 = Taulukko.listat_kopioi(taulukko)
