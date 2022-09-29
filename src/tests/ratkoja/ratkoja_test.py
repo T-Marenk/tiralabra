@@ -19,6 +19,10 @@ class TestRatkoja(unittest.TestCase):
             2, 0, 2, 0], [0, 0, 0, 0], [2, 0, 0, 0]]
         self.taulukko2 = [[0, 0, 0, 0], [
             0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+        self.taulukko3 =  [[32, 16, 8, 4],
+                [16, 32, 8, 4],
+                [0, 2, 4, 2],
+                [0, 0, 0, 2]]
 
     def test_tee_paatos_tekee_oikean_paatoksen(self):
         suunta1 = tee_paatos(self.taulukko1, self.mahdollisuudet1)
@@ -39,6 +43,6 @@ class TestRatkoja(unittest.TestCase):
         self.assertEqual(pisteet, 16)
 
     def test_arvo_palauttaa_oikean_pistemaaran(self):
-        pisteet = arvo(self.taulukko1, 1)
+        pisteet = mahdollisuus(self.taulukko1, 1)
 
         self.assertEqual(round(pisteet, 2), 9.25)

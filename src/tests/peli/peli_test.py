@@ -1,5 +1,6 @@
 import unittest
 from peli.peli import *
+from peli.liiku import mahdolliset_liikkeet
 
 
 class TestPeli(unittest.TestCase):
@@ -28,11 +29,11 @@ class TestPeli(unittest.TestCase):
         self.assertEqual(a, 2)
 
     def test_katsoo_oikein_voiko_liikkua_ylos(self):
-        arvo1 = katso_ylos_alas("ylos", self.taulukko1)
-        arvo2 = katso_ylos_alas("ylos", self.taulukko2)
+        arvo1 = mahdolliset_liikkeet(self.taulukko1)
+        arvo2 = mahdolliset_liikkeet(self.taulukko2)
 
-        self.assertEqual(arvo1, True)
-        self.assertEqual(arvo2, False)
+        self.assertEqual(arvo1["ylos"], True)
+        self.assertEqual(arvo2["ylos"], False)
 
     def test_katsoo_oikein_voiko_liikkua_alas(self):
         arvo1 = katso_ylos_alas("alas", self.taulukko1)

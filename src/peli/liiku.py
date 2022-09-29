@@ -151,87 +151,47 @@ def liiku_alas(taulukko: list):
                     tyhja = k
     return taulukko
 
+def mahdolliset_liikkeet(taulukko):
+    sarake_0 = [False, False, False, False]
+    sarake_ei_0 = [False, False, False, False]
+    sarake_edellinen = [None, None, None, None]
+    liikkeet = {"vasen":False, "oikea":False, "ylos":False, "alas":False}
 
-def katso_ylos_alas(suunta: str, taulukko: list):
-    """Fuktio, joka katsoo, voiko ruudukkoa liikuttaa ylös tai alas
+    for i in range(4):
+        rivi_0 = False
+        rivi_ei_0 = False
+        rivi_edellinen = None
 
-    Args:
-        suunta: Suunta, johon ruudukon liikkuvuus tarkistetaan
-        taulukko: Peli ruudukko
+        for j in range(4):
+            nykyinen = taulukko[i][j]
 
-    Returns:
-        Totuusarvon siitä, voiko ruudukkoa liikuttaa kyseiseen suuntaan
-    """
+            if nykyinen == 0:
+                rivi_0 = True
+                sarake_0[j] = True
+            
+                if rivi_ei_0:
+                    liikkeet["oikea"] = True
+                if sarake_ei_0[j]:
+                    liikkeet["alas"] = True
 
-    totuudet = {1: False, 2: False, 3: False, 4: False}
-    if suunta == "ylos":
-        alku = 0
-        loppu = 4
-        muutos = 1
-    elif suunta == "alas":
-        alku = 3
-        loppu = -1
-        muutos = -1
-    k = 1
-    for j in range(4):
-        edellinen = None
-        for i in range(alku, loppu, muutos):
-            i = taulukko[i]
-            if i[j] == 0:
-                totuudet[k] = True
-            elif edellinen is None:
-                edellinen = i[j]
-                if totuudet[k]:
-                    return True
             else:
-                if i[j] == edellinen:
-                    return True
-                if totuudet[k]:
-                    return True
-                edellinen = i[j]
-        k += 1
-    return False
+                rivi_ei_0 = True
+                sarake_ei_0[j] = True
 
+                if rivi_0:
+                    liikkeet["vasen"] = True
+                if sarake_0[j]:
+                    liikkeet["ylos"] = True
 
-def katso_vasen_oikea(suunta: str, taulukko: list):
-    """Funktio, joka katsoo, voiko ruudukkoa liikuttaa vasemmalle tai oikealle
-
-    Args:
-        suunta: Suunta, johon ruudukon liikkuvuus tarkistetaan
-        taulukko: Peli ruudukko
-
-    Returns:
-        Totuusarvon siitä, voiko ruudukkoa liikuttaa tarkistettavaan suuntaan
-    """
-
-    totuudet = {1: False, 2: False, 3: False, 4: False}
-    if suunta == "vasen":
-        alku = 0
-        loppu = 4
-        muutos = 1
-    elif suunta == "oikea":
-        alku = 3
-        loppu = -1
-        muutos = -1
-    k = 1
-    for i in taulukko:
-        edellinen = None
-        for j in range(alku, loppu, muutos):
-            if i[j] == 0:
-                totuudet[k] = True
-            elif edellinen is None:
-                edellinen = i[j]
-                if totuudet[k]:
-                    return True
-            else:
-                if i[j] == edellinen:
-                    return True
-                if totuudet[k]:
-                    return True
-                edellinen = i[j]
-        k += 1
-    return False
-
+                if rivi_edellinen is not None and rivi_edellinen == nykyinen:
+                    liikkeet["vasen"] = True
+                    liikkeet["oikea"] = True
+                rivi_edellinen = nykyinen
+                if sarake_edellinen[j] is not None and sarake_edellinen[j] == nykyinen:
+                    liikkeet["ylos"] = True
+                    liikkeet["alas"] = True
+                sarake_edellinen[j] = nykyinen
+    return liikkeet
 
 def tulosta_taulukko(taulukko):
     """Funktio, joka tulostaa peli-ruudukon
@@ -243,3 +203,10 @@ def tulosta_taulukko(taulukko):
     for i in taulukko:
         print(i)
     print()
+
+if __name__ == "__main__":
+    taulukko =  [[32, 16, 8, 4],
+                [16, 32, 8, 4],
+                [0, 2, 4, 2],
+                [0, 0, 0, 2]]
+    print(mahdolliset_liikkeet(taulukko))
