@@ -1,6 +1,7 @@
 """Ratkojasta vastaava koodi
 """
 
+from time import time
 from peli.liiku import liiku_alas, liiku_oikea, liiku_vasen, liiku_ylos
 from peli.liiku import katso_vasen_oikea, katso_ylos_alas
 from ratkoja.taulukko import Taulukko
@@ -35,70 +36,114 @@ def kay_lapi(taulukko: list):
                 isoin_paikka = isoin_pisteet[rivi][paikka]
                 isoin = nykyinen_arvo
             elif nykyinen_arvo == 0:
-                pisteet += 1
+                pisteet += .1
                 continue
             if paikka < 3:
                 if oikea_arvo == 0:
                     continue
                 if oikea_arvo == nykyinen_arvo/2:
-                    pisteet += 3
+                    pisteet += .2
                 elif nykyinen_arvo == oikea_arvo or nykyinen_arvo >= oikea_arvo:
-                    pisteet += 2
+                    pisteet += .3
                 else:
-                    pisteet -= 3
+                    pisteet -= .6
             if rivi < 3 and ala_arvo == nykyinen_arvo:
-                pisteet += 2
+                pisteet += .3
     pisteet += isoin_paikka
     return pisteet
 
+def maksimoi(taulukko, z):
+    pisteet = [0, 0, 0, 0]
+    isoin = (0, None)
+    t1, t2, t3, t4 = Taulukko.listat_kopioi(taulukko)
+    if katso_vasen_oikea("vasen", t1):
+        pisteet[0] = mahdollisuus(liiku_vasen(t1), z+1)
+        if pisteet[0] > isoin[0]:
+            isoin = (pisteet[0], "vasen")
+    if katso_vasen_oikea("oikea", t2):
+        pisteet[1] = mahdollisuus(liiku_oikea(t2), z+1)
+        if pisteet[1] > isoin[0]:
+            isoin = (pisteet[1], "oikea")
+    if katso_ylos_alas("ylos", t3):
+        pisteet[2] = mahdollisuus(liiku_ylos(t3), z+1)
+        if pisteet[2] > isoin[0]:
+            isoin = (pisteet[2], "ylos") 
+    if katso_ylos_alas("alas", t4):
+        pisteet[3] = mahdollisuus(liiku_alas(t4), z+1)
+        if pisteet[3] > isoin[0]:
+            isoin = (pisteet[3], "alas")
+    return isoin
 
-def arvo(taulukko, z):
+def mahdollisuus(taulukko, z):
     """Funktio, jolla kutsutaan seuraavien taulukoiden läpikäynti ja kutsutaan taulukon pisteytys
 
     Args:
         taulukko: peli-ruudukko
     Returns:
         Nykyisen ruudukon pisteet tai painotetun keskiarvon tulevien ruudukoiden pisteistä
-    """
-    if z == 0:
-        b = kay_lapi(taulukko)
-        return b
+    """ 
 
-    tyhat_paikat = Taulukko.tyhjat(taulukko)
-    uudet_taulukot = []
+    tyhat_paikat, maara = Taulukko.tyhjat(taulukko)
+
+    if z >= 3:
+        return kay_lapi(taulukko)
+    #if z >= 4:
+    #    return kay_lapi(taulukko)
+    if maara == 0:
+        return maksimoi(taulukko, z)
+    """
+    if z == 3 and maara >= 4:
+        pisteet = kay_lapi(taulukko)
+        return pisteet
+    if z >= 4 and maara >= 0:
+        pisteet = kay_lapi(taulukko)
+        return pisteet
+    if maara == 0:
+        pisteet = kay_lapi(taulukko)
+        return pisteet
+    """ 
+    keskiarvo = 0
+    # uudet_taulukot = []
     for tyhja in tyhat_paikat:
         t = Taulukko.kopioi(taulukko)
         t[tyhja[0]][tyhja[1]] = 2
-        uudet_taulukot.append(t)
+        keskiarvo += maksimoi(t, z)[0] * (0.9 * (1/maara))
         t = Taulukko.kopioi(taulukko)
         t[tyhja[0]][tyhja[1]] = 4
-        uudet_taulukot.append(t)
+        keskiarvo += maksimoi(t,z)[0] * (0.1 * (1/maara))
+    """
     t2_arvot = 0
     t4_arvot = 0
     i = 0
     for t in uudet_taulukot:
+        if i%2 == 0:
+            t2_arvot += maksimoi(t, z)[0] * 0.9
+        else:
+            t4_arvot += maksimoi(t, z)[0] * 0.1
+        i += 1
         if i % 2 != 0:
             t1, t2, t3, t4 = Taulukko.listat_kopioi(t)
             if katso_vasen_oikea("vasen", t1):
-                t4_arvot += arvo(liiku_vasen(t1), z-1)
+                t4_arvot += arvo(liiku_vasen(t1), z+1)
             if katso_vasen_oikea("oikea", t2):
-                t4_arvot += arvo(liiku_oikea(t2), z-1)
+                t4_arvot += arvo(liiku_oikea(t2), z+1)
             if katso_ylos_alas("ylos", t3):
-                t4_arvot += arvo(liiku_ylos(t3), z-1)
+                t4_arvot += arvo(liiku_ylos(t3), z+1)
             if katso_ylos_alas("alas", t4):
-                t4_arvot += arvo(liiku_alas(t4), z-1)
+                t4_arvot += arvo(liiku_alas(t4), z+1)
         else:
             t1, t2, t3, t4 = Taulukko.listat_kopioi(t)
             if katso_vasen_oikea("vasen", t1):
-                t2_arvot += arvo(liiku_vasen(t1), z-1)
+                t2_arvot += arvo(liiku_vasen(t1), z+1)
             if katso_vasen_oikea("oikea", t2):
-                t2_arvot += arvo(liiku_oikea(t2), z-1)
+                t2_arvot += arvo(liiku_oikea(t2), z+1)
             if katso_ylos_alas("ylos", t3):
-                t2_arvot += arvo(liiku_ylos(t3), z-1)
+                t2_arvot += arvo(liiku_ylos(t3), z+1)
             if katso_ylos_alas("alas", t4):
-                t2_arvot += arvo(liiku_alas(t4), z-1)
+                t2_arvot += arvo(liiku_alas(t4), z+1)
         i += 1
-    return 0.9*(t2_arvot/(i*4))+0.1*(t4_arvot/(i*4))
+    """
+    return keskiarvo
 
 
 def tee_paatos(taulukko: list, mahdollisuudet: dict):
@@ -110,22 +155,24 @@ def tee_paatos(taulukko: list, mahdollisuudet: dict):
     Returns:
         Parhaan liikkumissuunnan
     """
-
+    start = time()
     liikkeet = [0, 0, 0, 0]
     t1, t2, t3, t4 = Taulukko.listat_kopioi(taulukko)
     if mahdollisuudet["vasen"]:
-        liikkeet[0] = arvo(liiku_vasen(t1), 2)
+        liikkeet[0] = mahdollisuus(liiku_vasen(t1), 1)
     if mahdollisuudet["oikea"]:
-        liikkeet[1] = arvo(liiku_oikea(t2), 2)
+        liikkeet[1] = mahdollisuus(liiku_oikea(t2), 1)
     if mahdollisuudet["ylos"]:
-        liikkeet[2] = arvo(liiku_ylos(t3), 2)
+        liikkeet[2] = mahdollisuus(liiku_ylos(t3), 1)
     if mahdollisuudet["alas"]:
-        liikkeet[3] = arvo(liiku_alas(t4), 2)
+        liikkeet[3] = mahdollisuus(liiku_alas(t4), 1)
     isoin = max(liikkeet)
     if isoin > 0:
         suunta = liikkeet.index(isoin)
     else:
         suunta = 4
+    end = time()
+    print(end-start, "sekuntia")
     if suunta == 0:
         return "vasen"
     elif suunta == 1:
