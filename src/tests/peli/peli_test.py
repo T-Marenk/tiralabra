@@ -36,22 +36,22 @@ class TestPeli(unittest.TestCase):
         self.assertEqual(arvo2["ylos"], False)
 
     def test_katsoo_oikein_voiko_liikkua_alas(self):
-        arvo1 = katso_ylos_alas("alas", self.taulukko1)
-        arvo2 = katso_ylos_alas("alas", self.taulukko3)
+        arvo1 = mahdolliset_liikkeet(self.taulukko1)
+        arvo2 = mahdolliset_liikkeet(self.taulukko3)
 
-        self.assertEqual(arvo1, True)
-        self.assertEqual(arvo2, False)
+        self.assertEqual(arvo1["alas"], True)
+        self.assertEqual(arvo2["alas"], False)
 
     def test_katsoo_oikein_voiko_liikkua_vasen(self):
-        arvo1 = katso_vasen_oikea("vasen", self.taulukko1)
-        arvo2 = katso_vasen_oikea("vasen", self.taulukko2)
+        arvo1 = mahdolliset_liikkeet(self.taulukko1)
+        arvo2 = mahdolliset_liikkeet(self.taulukko2)
 
-        self.assertEqual(arvo1, True)
-        self.assertEqual(arvo2, False)
+        self.assertEqual(arvo1["vasen"], True)
+        self.assertEqual(arvo2["vasen"], False)
 
     def test_katsoo_oikein_voiko_liikkua_oikea(self):
-        arvo1 = katso_vasen_oikea("oikea", self.taulukko1)
-        arvo2 = katso_vasen_oikea("oikea", self.taulukko4)
+        arvo1 = mahdolliset_liikkeet(self.taulukko1)
+        arvo2 = mahdolliset_liikkeet(self.taulukko4)
 
-        self.assertEqual(arvo1, True)
-        self.assertEqual(arvo2, False)
+        self.assertEqual(arvo1["oikea"], True)
+        self.assertEqual(arvo2["oikea"], False)

@@ -7,77 +7,27 @@ from peli.liiku import mahdolliset_liikkeet
 from ratkoja.taulukko import Taulukko
 
 
-isoin_pisteet = [[7, 6, 5, 4], [6, 5, 4, 3], [5, 4, 3, 2], [4, 3, 2, 1]]
-
+isoin_pisteet = [[7, 6, 5, 4], [6, 5, 4, 3], [5, 4, 3, 2], [4, 3, 2, 1]]    
 
 def kay_lapi(taulukko: list):
-    """Funktio, joka pisteyttää nykyisen ruudukon
-
+    """Funktio, joka käy läpi nykyisen peli-ruudukon ja pisteyttää sen
+    
     Args:
         taulukko: peli-ruudukko
     Returns:
-        Ruudukon pisteet sekä uudet listat
+        Pisteet nykyisestä peliruudukosta
     """
 
+    tyhjat = 0
     pisteet = 0
-    isoin = 0
-    isoin_paikka = None
-    for rivi in range(3):
-        for paikka in range(3):
-            nykyinen_arvo = taulukko[rivi][paikka]  # Nykyinen arvo
-            if nykyinen_arvo == 0: 
-                pisteet += .1
+    for i in range(4):
+        for j in range(4):
+            nykyinen_arvo = taulukko[i][j]
+            if nykyinen_arvo == 0:
+                tyhjat += 1
                 continue
-            oikea_arvo = taulukko[rivi][paikka+1]  # Oikealla oleva
-            if oikea_arvo == 0:
-                pass
-            elif oikea_arvo == nykyinen_arvo/2:
-                pisteet += .4
-            elif nykyinen_arvo == oikea_arvo or nykyinen_arvo >= oikea_arvo:
-                pisteet += .2
-            else:
-                pisteet -= .6
-            ala_arvo = taulukko[rivi+1][paikka]  # Alla oleva
-            if ala_arvo == nykyinen_arvo:
-                pisteet += .3
-            if nykyinen_arvo > isoin:
-                isoin_paikka = isoin_pisteet[rivi][paikka]
-                isoin = nykyinen_arvo 
-    for rivi in range(3):
-        i = taulukko[rivi]
-        nykyinen_arvo = i[3]
-        if nykyinen_arvo == 0:
-            pisteet += .1
-            continue
-        ala_arvo = taulukko[rivi+1][paikka]  # Alla oleva
-        if ala_arvo == nykyinen_arvo:
-            pisteet += .3
-        if nykyinen_arvo > isoin:
-            isoin_paikka = isoin_pisteet[rivi][3]
-            isoin = nykyinen_arvo
-    for paikka in range(3):
-        nykyinen_arvo = taulukko[3][paikka]
-        if nykyinen_arvo == 0:
-            pisteet += .1
-            continue
-        oikea_arvo = taulukko[3][paikka+1]  # Oikealla oleva
-        if oikea_arvo == 0:
-            pass
-        elif oikea_arvo == nykyinen_arvo/2:
-            pisteet += .4
-        elif nykyinen_arvo == oikea_arvo or nykyinen_arvo >= oikea_arvo:
-            pisteet += .2
-        else:
-            pisteet -= .6
-        if nykyinen_arvo > isoin:
-            isoin_paikka = isoin_pisteet[3][paikka]
-            isoin = nykyinen_arvo
-    nykyinen_arvo = taulukko[3][3]
-    if nykyinen_arvo == 0:
-        pisteet += .1
-    elif nykyinen_arvo > isoin:
-        isoin_paikka = isoin_pisteet[3][3]
-    pisteet += isoin_paikka
+            pisteet += nykyinen_arvo * isoin_pisteet[i][j]
+    pisteet += tyhjat * 16
     return pisteet
 
 def maksimoi(taulukko, z):
@@ -92,24 +42,29 @@ def maksimoi(taulukko, z):
 
     pisteet = [0, 0, 0, 0]
     isoin = (0, None)
-    t1, t2, t3, t4 = Taulukko.listat_kopioi(taulukko)
     liikkeet = mahdolliset_liikkeet(taulukko)
     if liikkeet["vasen"]:
-        pisteet[0] = mahdollisuus(liiku_vasen(t1), z)
+        taulukko_k1 = Taulukko.kopioi(taulukko)
+        pisteet[0] = mahdollisuus(liiku_vasen(taulukko_k1), z)
         if pisteet[0] > isoin[0]:
             isoin = (pisteet[0], "vasen")
     if liikkeet["oikea"]:
-        pisteet[1] = mahdollisuus(liiku_oikea(t2), z)
+        taulukko_k2 = Taulukko.kopioi(taulukko)
+        pisteet[1] = mahdollisuus(liiku_oikea(taulukko_k2), z)
         if pisteet[1] > isoin[0]:
             isoin = (pisteet[1], "oikea")
     if liikkeet["ylos"]:
-        pisteet[2] = mahdollisuus(liiku_ylos(t3), z)
+        taulukko_k3 = Taulukko.kopioi(taulukko)
+        pisteet[2] = mahdollisuus(liiku_ylos(taulukko_k3), z)
         if pisteet[2] > isoin[0]:
             isoin = (pisteet[2], "ylos") 
     if liikkeet["alas"]:
-        pisteet[3] = mahdollisuus(liiku_alas(t4), z)
+        taulukko_k4 = Taulukko.kopioi(taulukko)
+        pisteet[3] = mahdollisuus(liiku_alas(taulukko_k4), z)
         if pisteet[3] > isoin[0]:
             isoin = (pisteet[3], "alas")
+    if z == 1:
+        print(pisteet)
     return isoin
 
 def mahdollisuus(taulukko, z):
@@ -124,10 +79,14 @@ def mahdollisuus(taulukko, z):
 
     tyhat_paikat, maara = Taulukko.tyhjat(taulukko)
 
-    if z >= 3 and maara >= 5:
+    if z == 3 and maara >= 6:
         return kay_lapi(taulukko)
-    if z >= 4:
+    if z >= 4 and maara >= 2:
         return kay_lapi(taulukko)
+    if z == 6:
+        return kay_lapi(taulukko)
+    #if z >= 5:
+    #    return kay_lapi(taulukko)
     if maara == 0:
         return maksimoi(taulukko, z+1) 
 
@@ -153,10 +112,10 @@ def tee_paatos(taulukko: list, mahdollisuudet: dict):
         Parhaan liikkumissuunnan
     """
 
-    #start = time() 
+    start = time() 
     suunta = maksimoi(taulukko, 1)[1]
-    #end = time()
-    #print(end-start, "sekuntia")
+    end = time()
+    print(end-start, "sekuntia")
     if suunta is not None:
         return suunta
     else:

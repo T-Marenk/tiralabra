@@ -1,6 +1,7 @@
 """2048-pelin liikkumisesta vastaava koodi
 """
 
+from time import time
 
 def liiku_vasen(taulukko: list):
     k = 0
@@ -205,8 +206,53 @@ def tulosta_taulukko(taulukko):
     print()
 
 if __name__ == "__main__":
-    taulukko =  [[32, 16, 8, 4],
-                [16, 32, 8, 4],
-                [0, 2, 4, 2],
-                [0, 0, 0, 2]]
+    taulukko =  np.array([(32, 16, 8, 4),
+                (16, 32, 8, 4),
+                (0, 2, 4, 2),
+                (0, 0, 0, 2)])
     print(mahdolliset_liikkeet(taulukko))
+    taulukko_kopio = np.copy(taulukko)
+    taulukko_k = np.copy(taulukko)
+    taulukko_a = np.copy(taulukko)
+
+    s = time()
+    liiku_vasen(taulukko)
+    e = time()
+    aj = e-s
+    print(e-s)
+
+
+    s = time()
+    liiku_oikea(taulukko_kopio)
+    e = time()
+    print(e-s)
+
+
+    s = time()
+    liiku_ylos(taulukko_k)
+    e = time()
+    print(e-s)
+
+    s = time()
+    liiku_alas(taulukko_a)
+    e = time()
+    print(e-s)
+    
+
+
+    taulukko = [[512, 256, 128, 8],
+                [256, 128, 64, 16],
+                [128, 64, 32, 4],
+                [8, 4, 2, 0]]
+    print(mahdolliset_liikkeet(taulukko))
+
+    s = time()
+    liiku_vasen(taulukko)
+    e = time()
+    print(e-s)
+
+    s = time()
+    liiku_oikea(taulukko)
+    e = time()
+    print(e-s)
+    print(e-s > aj)

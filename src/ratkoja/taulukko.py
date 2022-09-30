@@ -1,3 +1,6 @@
+import numpy as np
+from time import time
+
 class Taulukko:
     """Luokka, jonka tehtävä on taulukon läpikäyminen
     """

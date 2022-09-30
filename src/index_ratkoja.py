@@ -6,7 +6,11 @@ from peli.peli import main_ratkoja as run
 def main():
     """Kutsuu pelin
     """
-    run()
+
+    taulukko = run()
+
+    for i in taulukko:
+        print(i)
 
 
 if __name__ == "__main__":
