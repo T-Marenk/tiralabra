@@ -93,40 +93,49 @@ def mahdollisuus(taulukko, z, tod, alpha, beta):
     tyhat_paikat, maara = Taulukko.tyhjat(taulukko)
     if z >= 3 and maara >= 5:
         return kay_lapi(taulukko)
-    if z == 5:
+    if z == 6:
         return kay_lapi(taulukko)
     if maara == 0:
-        return maksimi(taulukko, z+1) 
+        liikkeet = mahdolliset_liikkeet(taulukko)
+        voi_liikkua = False
+        suunnat = ["vasen", "oikea", "ylos", "alas"]
+        for suunta in suunnat:
+            if liikkeet[suunta]:
+               voi_liikkua = True 
+        if voi_liikkua:
+            return maksimi(taulukko, z+1)
+        else:
+            return kay_lapi(taulukko)
 
     huonoin = float('inf')
 
     for tyhja in tyhat_paikat:
         keskiarvo = 0
-        yht_tod = 0
+        yht_tod_keskiarvolle = 0
     
-        tt = (0.9) * tod
-        if 0.9 * tt < 0.1 and maara > 4:
+        ruudukon_tod = (0.9 * (1/maara)) * tod
+        if ruudukon_tod < 0.0001:
             pass
         else:
             t = Taulukko.kopioi(taulukko)
             t[tyhja[0]][tyhja[1]] = 2
-            paras = maksimi(t, z+1, tt, alpha, beta)
-            keskiarvo += paras[0] * (0.9)
-            yht_tod += 0.9
+            paras = maksimi(t, z+1, ruudukon_tod, alpha, beta)
+            keskiarvo += paras[0] * 0.9 * (1/maara)
+            yht_tod_keskiarvolle += 0.9 * (1/maara)
 
-        tt = (0.1) * tod
-        if 0.9 * tt < 0.1 and maara > 4:
+        ruudukon_tod = (0.1 * (1/maara)) * tod
+        if ruudukon_tod < 0.0001:
             pass
         else:
             t = Taulukko.kopioi(taulukko)
             t[tyhja[0]][tyhja[1]] = 4
-            paras = maksimi(t,z+1, tt, alpha, beta)
-            keskiarvo += paras[0] * (0.1)
-            yht_tod += 0.1
-        if yht_tod == 0:
+            paras = maksimi(t,z+1, ruudukon_tod, alpha, beta)
+            keskiarvo += paras[0] * 0.1 *(1/maara)
+            yht_tod_keskiarvolle += 0.1 * (1/maara)
+        if yht_tod_keskiarvolle == 0:
             keskiarvo = kay_lapi(taulukko)
         else:
-            keskiarvo /= yht_tod
+            keskiarvo /= yht_tod_keskiarvolle
         if keskiarvo < huonoin:
             huonoin = keskiarvo
         if huonoin <= alpha:
@@ -156,3 +165,11 @@ def tee_paatos(taulukko: list, mahdollisuudet: dict):
         return suunta
     else:
         return "lopeta"
+
+if __name__ == "__main__":
+    taulukko = [[2048, 128, 64, 2],
+                [1024, 256, 4, 16],
+                [16, 128, 16, 4],
+                [0, 2, 2, 2]]
+
+ 
