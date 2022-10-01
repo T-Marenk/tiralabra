@@ -3,46 +3,36 @@ from ratkoja.ratkoja import *
 
 
 class TestRatkoja(unittest.TestCase):
-    def setUp(self):
-        self.mahdollisuudet1 = {"vasen": True,
-                                "oikea": False, "ylos": False, "alas": False}
-        self.mahdollisuudet2 = {"vasen": False,
-                                "oikea": True, "ylos": False, "alas": False}
-        self.mahdollisuudet3 = {"vasen": False,
-                                "oikea": False, "ylos": True, "alas": False}
-        self.mahdollisuudet4 = {"vasen": False,
-                                "oikea": False, "ylos": False, "alas": True}
-        self.mahdollisuudet5 = {"vasen": False,
-                                "oikea": False, "ylos": False, "alas": False}
+    def setUp(self): 
 
         self.taulukko1 = [[2, 4, 0, 0], [
-            2, 0, 2, 0], [0, 0, 0, 0], [2, 0, 0, 0]]
-        self.taulukko2 = [[0, 0, 0, 0], [
-            0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
-        self.taulukko3 =  [[32, 16, 8, 4],
-                [16, 32, 8, 4],
-                [0, 2, 4, 2],
-                [0, 0, 0, 2]]
+                            2, 0, 2, 0],
+                        [0, 0, 0, 0],
+                         [2, 0, 0, 0]]
+        self.taulukko2 = [[2048, 128, 64, 2],
+                        [1024, 256, 4, 16],
+                        [16, 128, 16, 4],
+                        [0, 2, 4, 2]]
+        self.taulukko3 = [[0, 2048, 128, 4],
+                        [1024, 256, 8, 4],
+                        [128, 64, 32, 2],
+                        [16, 2, 4, 2]] 
 
     def test_tee_paatos_tekee_oikean_paatoksen(self):
-        suunta1 = tee_paatos(self.taulukko1, self.mahdollisuudet1)
-        suunta2 = tee_paatos(self.taulukko1, self.mahdollisuudet2)
-        suunta3 = tee_paatos(self.taulukko1, self.mahdollisuudet3)
-        suunta4 = tee_paatos(self.taulukko1, self.mahdollisuudet4)
-        suunta5 = tee_paatos(self.taulukko2, self.mahdollisuudet5)
+        suunta1 = tee_paatos(self.taulukko1)
+        suunta2 = tee_paatos(self.taulukko2) 
+        suunta3 = tee_paatos(self.taulukko3)
 
-        self.assertEqual(suunta1, "vasen")
-        self.assertEqual(suunta2, "oikea")
-        self.assertEqual(suunta3, "ylos")
-        self.assertEqual(suunta4, "alas")
-        self.assertEqual(suunta5, "lopeta")
+        self.assertEqual(suunta1, "ylos")
+        self.assertEqual(suunta2, "alas")
+        self.assertEqual(suunta3, "vasen")
 
     def test_kay_lapi_palauttaa_oikean_arvon(self):
         pisteet = kay_lapi(self.taulukko1)
 
-        self.assertEqual(pisteet, 16)
+        self.assertEqual(pisteet, 242)
 
-    def test_arvo_palauttaa_oikean_pistemaaran(self):
-        pisteet = mahdollisuus(self.taulukko1, 1)
+    def test_mahdollisuus_palauttaa_oikean_pistemaaran(self):
+        pisteet = mahdollisuus(self.taulukko1, 1, 1.0, -float('inf'), float('inf'))
 
-        self.assertEqual(round(pisteet, 2), 9.25)
+        self.assertEqual(round(pisteet, 2), 291.72)

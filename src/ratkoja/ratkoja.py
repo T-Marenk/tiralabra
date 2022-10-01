@@ -135,7 +135,7 @@ def mahdollisuus(taulukko, z, tod, alpha, beta):
     pienin = float('inf')
 
     for tyhja in tyhat_paikat:
-        keskiarvo = 0
+        pisteet = 0
         yht_tod_keskiarvolle = 0
     
         ruudukon_tod = (0.9 * (1/maara)) * tod
@@ -145,7 +145,7 @@ def mahdollisuus(taulukko, z, tod, alpha, beta):
             t = Taulukko.kopioi(taulukko)
             t[tyhja[0]][tyhja[1]] = 2
             paras = maksimi(t, z+1, ruudukon_tod, alpha, beta)
-            keskiarvo += paras[0] * 0.9
+            pisteet += paras[0] * 0.9
             yht_tod_keskiarvolle += 0.9
 
         ruudukon_tod = (0.1 * (1/maara)) * tod
@@ -155,15 +155,15 @@ def mahdollisuus(taulukko, z, tod, alpha, beta):
             t = Taulukko.kopioi(taulukko)
             t[tyhja[0]][tyhja[1]] = 4
             paras = maksimi(t,z+1, ruudukon_tod, alpha, beta)
-            keskiarvo += paras[0] * 0.1
+            pisteet += paras[0] * 0.1
             yht_tod_keskiarvolle += 0.1
 
         if yht_tod_keskiarvolle == 0:
-            keskiarvo = kay_lapi(taulukko)
+            pisteet = kay_lapi(taulukko)
         else:
-            keskiarvo /= yht_tod_keskiarvolle
-        if keskiarvo < pienin:
-            pienin = keskiarvo
+            pisteet /= yht_tod_keskiarvolle
+        if pisteet < pienin:
+            pienin = pisteet
         if pienin <= alpha:
             return pienin
         if pienin < beta:
