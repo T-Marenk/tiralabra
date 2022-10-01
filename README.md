@@ -6,9 +6,11 @@ Projektin tarkoituksena on luoda mahdollisimman tehokas 2048-pelin ratkoja hyöd
 
 ## Dokumentaatio
 
-[Määrittelydokumentti](./dokumentaatio/maarittelydokumentti.md)
+![Määrittelydokumentti](./dokumentaatio/maarittelydokumentti.md)
 
-[Testausdokumentti](./dokumentaatio/Testaus.md)
+![Testausdokumentti](./dokumentaatio/Testaus.md)
+
+![Toteutusdokumentti](./dokumentaatio/toteutusdokumentti.md)
 
 ### Viikkoraportit
 
@@ -17,6 +19,8 @@ Projektin tarkoituksena on luoda mahdollisimman tehokas 2048-pelin ratkoja hyöd
 ![Viikkoraportti 2](./dokumentaatio/viikkoraportit/viikkoraportti2.md)
 
 ![Viikkoraportti 3](./dokumentaatio/viikkoraportit/viikkoraportti3.md)
+
+![Viikkoraportti 4](./dokumentaatio/viikkoraportit/viikkoraportti4.md)
 
 ## Ohjelman vaatimukset
 
