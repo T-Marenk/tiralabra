@@ -14,7 +14,7 @@ Peli-ratkojasta vastaava `ratkoja.py`-tiedosto testataan ![TestRatkoja](/src/tes
 
 ### Testikattavuus
 
-Tämän hetkinen testikattavuus on 74%
+Tämän hetkinen testikattavuus on 71%
 
-![](./kuvat/coverage_report.png)
+![](./kuvat/coverage-report_4.png)
 
