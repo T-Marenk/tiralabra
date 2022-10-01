@@ -2,27 +2,6 @@ class Taulukko:
     """Luokka, jonka tehtävä on taulukon läpikäyminen
     """
 
-    def listat_kopioi(taulukko: list):
-        """Kopioi nykyisen ruudukon
-
-        Args:
-            taulukko: Peli ruudukko
-
-        Returns:
-            Ruudukon kopiot
-        """
-
-        t1 = []
-        t2 = []
-        t3 = []
-        t4 = []
-        for i in taulukko:
-            t1.append(i.copy())
-            t2.append(i.copy())
-            t3.append(i.copy())
-            t4.append(i.copy())
-        return t1, t2, t3, t4
-
     def kopioi(taulukko: list):
         """Kopioi nykyisen ruudukon kerran
 

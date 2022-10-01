@@ -36,6 +36,9 @@ def maksimi(taulukko, z, tod, alpha, beta):
     Args:
         taulukko: peli-ruudukko
         z: nykyinen syvyys
+        tod: Todennäköisyys nykyiselle ruudukolle
+        alpha: Suurin löydetty mahdollinen arvo
+        beta: Pienin löydetty mahdollinen arvo
     Returns:
         tuplen, joka kertoo parhaan pistemäärän ja liikuttavan suunnan
     """
@@ -86,6 +89,9 @@ def mahdollisuus(taulukko, z, tod, alpha, beta):
     Args:
         taulukko: peli-ruudukko
         z: nykyinen syvyys
+        tod: Todennäköisyys nykyiselle ruudukolle
+        alpha: Suurin löydetty mahdollinen arvo
+        beta: Pienin löydetty mahdollinen arvo
     Returns:
         Nykyisen ruudukon pisteet tai painotetun keskiarvon tulevien max-solmujen pisteistä
     """ 
@@ -95,19 +101,38 @@ def mahdollisuus(taulukko, z, tod, alpha, beta):
         return kay_lapi(taulukko)
     if z == 6:
         return kay_lapi(taulukko)
-    if maara == 0:
-        liikkeet = mahdolliset_liikkeet(taulukko)
-        voi_liikkua = False
+    if maara == 1:
+        tyhja = tyhat_paikat[0]
+        taulukko_kopio = Taulukko.kopioi(taulukko)
+        taulukko_kopio[tyhja[0]][tyhja[1]] = 2
+
+        liikkeet_1 = mahdolliset_liikkeet(taulukko_kopio)
+        voi_liikkua_1 = False
         suunnat = ["vasen", "oikea", "ylos", "alas"]
         for suunta in suunnat:
-            if liikkeet[suunta]:
-               voi_liikkua = True 
-        if voi_liikkua:
-            return maksimi(taulukko, z+1)
+            if liikkeet_1[suunta]:
+               voi_liikkua_1 = True 
+        
+        taulukko_kopio_1 = Taulukko.kopioi(taulukko)
+        taulukko_kopio_1[tyhja[0]][tyhja[1]] = 4
+
+        liikkeet_1 = mahdolliset_liikkeet(taulukko_kopio)
+        voi_liikkua_2 = False
+        suunnat = ["vasen", "oikea", "ylos", "alas"]
+        for suunta in suunnat:
+            if liikkeet_1[suunta]:
+               voi_liikkua_2 = True 
+
+        if voi_liikkua_1 and voi_liikkua_2:
+            return maksimi(taulukko_kopio, z+1, tod, alpha, beta)[0] * 0.9 + maksimi(taulukko_kopio_1, z+1, tod, alpha, beta)[0] * 0.1
+        elif voi_liikkua_1: 
+            return maksimi(taulukko_kopio, z+1, tod, alpha, beta)[0]
+        elif voi_liikkua_2:
+            return maksimi(taulukko_kopio_1, z+1, tod, alpha, beta)[0]
         else:
             return kay_lapi(taulukko)
 
-    huonoin = float('inf')
+    pienin = float('inf')
 
     for tyhja in tyhat_paikat:
         keskiarvo = 0
@@ -120,8 +145,8 @@ def mahdollisuus(taulukko, z, tod, alpha, beta):
             t = Taulukko.kopioi(taulukko)
             t[tyhja[0]][tyhja[1]] = 2
             paras = maksimi(t, z+1, ruudukon_tod, alpha, beta)
-            keskiarvo += paras[0] * 0.9 * (1/maara)
-            yht_tod_keskiarvolle += 0.9 * (1/maara)
+            keskiarvo += paras[0] * 0.9
+            yht_tod_keskiarvolle += 0.9
 
         ruudukon_tod = (0.1 * (1/maara)) * tod
         if ruudukon_tod < 0.0001:
@@ -130,27 +155,27 @@ def mahdollisuus(taulukko, z, tod, alpha, beta):
             t = Taulukko.kopioi(taulukko)
             t[tyhja[0]][tyhja[1]] = 4
             paras = maksimi(t,z+1, ruudukon_tod, alpha, beta)
-            keskiarvo += paras[0] * 0.1 *(1/maara)
-            yht_tod_keskiarvolle += 0.1 * (1/maara)
+            keskiarvo += paras[0] * 0.1
+            yht_tod_keskiarvolle += 0.1
+
         if yht_tod_keskiarvolle == 0:
             keskiarvo = kay_lapi(taulukko)
         else:
             keskiarvo /= yht_tod_keskiarvolle
-        if keskiarvo < huonoin:
-            huonoin = keskiarvo
-        if huonoin <= alpha:
-            return huonoin
-        if huonoin < beta:
-            beta = huonoin
-    return huonoin
+        if keskiarvo < pienin:
+            pienin = keskiarvo
+        if pienin <= alpha:
+            return pienin
+        if pienin < beta:
+            beta = pienin
+    return pienin
 
 
-def tee_paatos(taulukko: list, mahdollisuudet: dict):
+def tee_paatos(taulukko: list):
     """Ratkojan aloittava funktio
 
     Args:
         taulukko: peli-ruudukko
-        mahdollisuudet: mahdollisten liikkeiden sanakirja
     Returns:
         Parhaan liikkumissuunnan
     """
@@ -171,5 +196,9 @@ if __name__ == "__main__":
                 [1024, 256, 4, 16],
                 [16, 128, 16, 4],
                 [0, 2, 2, 2]]
-
- 
+"""
+[2048, 128, 4, 2]
+[1024, 256, 8, 4]
+[128, 64, 32, 2]
+[16, 2, 4, 0]
+"""

@@ -112,29 +112,20 @@ def main_ratkoja():
     taulukko = uusi_peli()
     while True:
         tulosta_taulukko(taulukko)
-        mahdollisuudet = mahdolliset_liikkeet(taulukko)
         taulukko_kopio = []
         for i in taulukko:
             taulukko_kopio.append(i.copy())
-        komento = tee_paatos(taulukko_kopio, mahdollisuudet)
+        komento = tee_paatos(taulukko_kopio)
         if komento == "uusi":
             taulukko = uusi_peli()
             continue
         if komento == "vasen":
-            if not mahdollisuudet["vasen"]:
-                continue
             taulukko = liiku_vasen(taulukko)
         elif komento == "oikea":
-            if not mahdollisuudet["oikea"]:
-                continue
             taulukko = liiku_oikea(taulukko)
         elif komento == "ylos":
-            if not mahdollisuudet["ylos"]:
-                continue
             taulukko = liiku_ylos(taulukko)
         elif komento == "alas":
-            if not mahdollisuudet["alas"]:
-                continue
             taulukko = liiku_alas(taulukko)
         elif komento == "lopeta":
             return taulukko
