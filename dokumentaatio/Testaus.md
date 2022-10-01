@@ -1,6 +1,6 @@
 # Testausdokumentti
 
-Ohjelman testaus on toteutettu automatisoiduilla unittesteillä
+Ohjelman testaus on toteutettu automatisoiduilla unittesteillä sekä ohjelman suorituskyky suoritetaan manuaalisesti laadituin testein
 
 ## Automatisoidut testit
 
@@ -18,3 +18,16 @@ Tämän hetkinen testikattavuus on 71%
 
 ![](./kuvat/coverage-report_4.png)
 
+## Suorituskyvyn testaaminen
+
+### Toteutus
+
+Suorituskyvyn testaamista varten ratkoja suoritetaan alusta loppuun ja joka testauskerralla otetaan ylös seuraavat asiat:
+
+- Keskiarvo siirtojen päättämisessä kestäneestä ajasta
+
+- Suurin siirron päättämiseen mennyt aika
+
+- Pienin siirron päättämiseen mennyt aika
+
+- Suurin arvo taulukossa pelin loputtua
