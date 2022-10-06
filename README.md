@@ -26,6 +26,8 @@ Projektin tarkoituksena on luoda mahdollisimman tehokas 2048-pelin ratkoja hyöd
 
 Projekti käyttää python-versiota 3.10. Tämän lisäksi projektissa on hyödynnetty poetrya, joka tulee olla asennettuna tietokoneella
 
+Ratkojaa pyörittäessä avataan peli Chrome selaimessa, joten tietokoneella tarvitsee olla Chrome asennettuna.
+
 ## Asennus
 
 1. Kopioi projekti tietokoneellesi
