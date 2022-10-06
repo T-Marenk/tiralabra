@@ -1,5 +1,5 @@
-from peli.peli import main as run
-"""Kutsuu pelin pelattavana versiona
+from peli.netti_peli import main as run
+"""Kutsuu pelin netti version ratkojalle
 """
 
 

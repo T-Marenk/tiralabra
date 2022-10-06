@@ -180,14 +180,14 @@ def tee_paatos(taulukko: list):
         Parhaan liikkumissuunnan
     """
 
-    start = time() 
+    alku = time() 
     alpha = -float('inf')
     beta = float('inf')
     suunta = maksimi(taulukko, 1, 1, alpha, beta)[1]
-    end = time()
-    print(end-start, "sekuntia")
+    loppu = time()
+    aika = loppu-alku
     if suunta is not None:
-        return suunta
+        return suunta, aika
     else:
         return "lopeta"
 
