@@ -25,7 +25,14 @@ def main():
     url = 'https://play2048.co/'
     driver = webdriver.Chrome('assets/chromedriver')
     driver.get(url)
-    body = driver.find_element(By.TAG_NAME, 'body')    
+
+    try:
+        cookie_prompt = driver.find_element(By.ID, "ez-accept-all")
+        cookie_prompt.click()
+    except:
+        pass
+    
+    body = driver.find_element(By.TAG_NAME, 'body')
 
     ajat = []
     komento = None
@@ -42,7 +49,14 @@ def main():
             body.send_keys(Keys.ARROW_UP)
         elif komento == "alas":
             body.send_keys(Keys.ARROW_DOWN)
-        time.sleep(0.1)
+
+        try:
+            jatka = driver.find_element(By.CLASS_NAME, "keep-playing-button")
+            jatka.click()
+        except:
+            pass
+
+        time.sleep(0.05)
 
     suurin_palikka = max(taulukko)
     suurin = max(ajat)
