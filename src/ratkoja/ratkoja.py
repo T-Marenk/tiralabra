@@ -7,7 +7,8 @@ from peli.liiku import mahdolliset_liikkeet
 from ratkoja.taulukko import Taulukko
 
 
-isoin_pisteet = [[7, 6, 5, 4], [6, 5, 4, 3], [5, 4, 3, 2], [4, 3, 2, 1]]    
+# isoin_pisteet = [[7, 6, 5, 4], [6, 5, 4, 3], [5, 4, 3, 2], [4, 3, 2, 1]]    
+isoin_pisteet = [[16, 9, 8, 1], [15, 10, 7, 2], [14, 11, 6, 3], [13, 12, 5, 4]]    
 
 def kay_lapi(taulukko: list):
     """Funktio, joka käy läpi nykyisen peli-ruudukon ja pisteyttää sen
@@ -99,7 +100,7 @@ def mahdollisuus(taulukko, z, tod, alpha, beta):
     tyhat_paikat, maara = Taulukko.tyhjat(taulukko)
     if z >= 3 and maara >= 5:
         return kay_lapi(taulukko)
-    if z == 6:
+    if z == 5:
         return kay_lapi(taulukko)
     if maara == 1:
         tyhja = tyhat_paikat[0]
@@ -139,7 +140,7 @@ def mahdollisuus(taulukko, z, tod, alpha, beta):
         yht_tod_keskiarvolle = 0
     
         ruudukon_tod = (0.9 * (1/maara)) * tod
-        if ruudukon_tod < 0.0001:
+        if ruudukon_tod < 0.001:
             pass
         else:
             t = Taulukko.kopioi(taulukko)
@@ -189,7 +190,7 @@ def tee_paatos(taulukko: list):
     if suunta is not None:
         return suunta, aika
     else:
-        return "lopeta"
+        return "lopeta", aika
 
 if __name__ == "__main__":
     taulukko = [[2048, 128, 64, 2],

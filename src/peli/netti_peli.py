@@ -22,10 +22,9 @@ def getGrid(driver):
         return matriisi
 
 def main():
-    url = 'https://gabrielecirulli.github.io/2048/'
+    url = 'https://play2048.co/'
     driver = webdriver.Chrome('assets/chromedriver')
     driver.get(url)
-
     body = driver.find_element(By.TAG_NAME, 'body')    
 
     ajat = []
@@ -54,4 +53,4 @@ def main():
     print("Pienin:", pienin)
     print("Keskiarvo", keskiarvo)
 
-    driver.exit()
+    driver.close()
