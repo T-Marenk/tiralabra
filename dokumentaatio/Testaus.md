@@ -31,3 +31,5 @@ Suorituskyvyn testaamista varten ratkoja suoritetaan alusta loppuun ja joka test
 - Pienin siirron päättämiseen mennyt aika
 
 - Suurin arvo taulukossa pelin loputtua
+
+Tämä saadaan tehtyä niin, että kun peliä ratkojaa kutsutaan kohteesta ![Netti-peli](/src/peli/netti_peli.py), otetaan ylös kulunut aika ja pelin päätyttyä tulokset tulostetaan komentoriville
