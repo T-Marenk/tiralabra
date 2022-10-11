@@ -15,7 +15,7 @@ Lisäksi opin Pythonin selenium-kirjaston toimintaa
 
 ## Kulutettu aika
 
-Tähän mennessä olen käyttänyt projektiin tällä viikolla 6 tuntia
+Tähän mennessä olen käyttänyt projektiin tällä viikolla 8 tuntia
 
 ## Ongelma tilanteet
 
