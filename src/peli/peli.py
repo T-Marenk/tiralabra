@@ -115,7 +115,7 @@ def main_ratkoja():
         taulukko_kopio = []
         for i in taulukko:
             taulukko_kopio.append(i.copy())
-        komento = tee_paatos(taulukko_kopio)
+        komento, _ = tee_paatos(taulukko_kopio)
         if komento == "uusi":
             taulukko = uusi_peli()
             continue

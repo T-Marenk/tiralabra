@@ -43,9 +43,21 @@ def maksimi(taulukko, z, tod, alpha, beta):
     Returns:
         tuplen, joka kertoo parhaan pistemäärän ja liikuttavan suunnan
     """
-
+    liikefunktiot = {"oikea": liiku_oikea, "vasen": liiku_vasen, "ylos": liiku_ylos, "alas": liiku_alas}
     isoin = (-float('inf'), None)
     liikkeet = mahdolliset_liikkeet(taulukko)
+    for liike in liikkeet:
+        if liikkeet[liike]:
+            taulukko_kopio = Taulukko.kopioi(taulukko)
+            pisteet = mahdollisuus(liikefunktiot[liike](taulukko_kopio), z, tod, alpha, beta)
+            if pisteet > isoin[0]:
+                isoin = (pisteet, liike)
+            if isoin[0] >= beta:
+                return isoin
+            if isoin[0] > alpha:
+                alpha = isoin[0]
+    return isoin
+    """
     if liikkeet["vasen"]:
         taulukko_k1 = Taulukko.kopioi(taulukko)
         pisteet = mahdollisuus(liiku_vasen(taulukko_k1), z, tod, alpha, beta)
@@ -83,6 +95,7 @@ def maksimi(taulukko, z, tod, alpha, beta):
         if isoin[0] > alpha:
             alpha = isoin[0]
     return isoin
+    """
 
 def mahdollisuus(taulukko, z, tod, alpha, beta):
     """Funktio, jolla käydään läpi chance-solmujen arvot sekä kutsutaan pisteytysfunktiota oikealla syvyydellä
@@ -117,7 +130,7 @@ def mahdollisuus(taulukko, z, tod, alpha, beta):
         taulukko_kopio_1 = Taulukko.kopioi(taulukko)
         taulukko_kopio_1[tyhja[0]][tyhja[1]] = 4
 
-        liikkeet_1 = mahdolliset_liikkeet(taulukko_kopio)
+        liikkeet_1 = mahdolliset_liikkeet(taulukko_kopio_1)
         voi_liikkua_2 = False
         suunnat = ["vasen", "oikea", "ylos", "alas"]
         for suunta in suunnat:
@@ -131,7 +144,7 @@ def mahdollisuus(taulukko, z, tod, alpha, beta):
         elif voi_liikkua_2:
             return maksimi(taulukko_kopio_1, z+1, tod, alpha, beta)[0]
         else:
-            return kay_lapi(taulukko)
+            return kay_lapi(taulukko) 
 
     pienin = float('inf')
 
@@ -185,8 +198,11 @@ def tee_paatos(taulukko: list):
     alpha = -float('inf')
     beta = float('inf')
     suunta = maksimi(taulukko, 1, 1, alpha, beta)[1]
+    print(suunta)
     loppu = time()
     aika = loppu-alku
+    print("Päätökseen kulunut aika: ", aika, "s")
+    print("")
     if suunta is not None:
         return suunta, aika
     else:

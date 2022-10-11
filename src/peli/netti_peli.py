@@ -1,5 +1,6 @@
 """Välikäännös, joka antaa ratkojan pelata 2048-peliä internetissä"""
 
+from collections import deque
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -22,6 +23,17 @@ def getGrid(driver):
         return matriisi
 
 def main():
+    options = webdriver.ChromeOptions()
+
+    options.add_argument("--headless")
+    options.add_argument("--disable-xss-auditor")
+    options.add_argument("--disable-web-security")
+    options.add_argument("--allow-running-insecure-content")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-setuid-sandbox")
+    options.add_argument("--disable-webgl")
+    options.add_argument("--disable-popup-blocking")
+
     url = 'https://play2048.co/'
     driver = webdriver.Chrome('assets/chromedriver')
     driver.get(url)
@@ -34,7 +46,7 @@ def main():
     
     body = driver.find_element(By.TAG_NAME, 'body')
 
-    ajat = []
+    ajat = deque()
     komento = None
 
     while komento != "lopeta":
