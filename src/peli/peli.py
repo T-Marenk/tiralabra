@@ -1,11 +1,10 @@
-from random import randint
-from peli.liiku import liiku_vasen, liiku_oikea, liiku_ylos, liiku_alas
-from peli.liiku import mahdolliset_liikkeet 
-from ratkoja.ratkoja import tee_paatos
-
 """2048-pelin rungosta vastaava koodi
 """
 
+from random import randint
+from peli.liiku import liiku_vasen, liiku_oikea, liiku_ylos, liiku_alas
+from peli.liiku import mahdolliset_liikkeet
+from ratkoja.ratkoja import tee_paatos
 
 def uusi_peli():
     """Funktio, joka luo uuden pelin
@@ -13,7 +12,8 @@ def uusi_peli():
     Returns:
         Uuden peli-ruudukon
     """
-    taulukko = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]] #np.array([(0,0,0,0), (0,0,0,0), (0,0,0,0), (0,0,0,0)])
+    taulukko = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]
+                ]  # np.array([(0,0,0,0), (0,0,0,0), (0,0,0,0), (0,0,0,0)])
     edellinen = None
     while True:
         sijoitus_y = randint(0, 3)
@@ -43,6 +43,7 @@ def tulosta_taulukko(taulukko):
     for i in taulukko:
         print(i)
     print()
+
 
 def uusi_palikka(taulukko):
     """Funktio, joka lisää peli-ruudukkoon uuden palikan

@@ -30,8 +30,8 @@ class Taulukko:
         maara = 0
         for i in range(4):
             for j in range(4):
-                a = taulukko[i][j]
-                if a == 0:
+                arvo = taulukko[i][j]
+                if arvo == 0:
                     tyhjat_paikat.append((i, j))
                     maara += 1
         return tyhjat_paikat, maara

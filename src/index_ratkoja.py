@@ -1,6 +1,7 @@
-from peli.peli import main_ratkoja as run
-"""Kutsuu pelin ratkoja version
+"""Kutsuu pelin ratkoja version komentorivillä
 """
+
+from peli.peli import main_ratkoja as run
 
 
 def main():

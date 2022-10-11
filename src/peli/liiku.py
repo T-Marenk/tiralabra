@@ -1,9 +1,16 @@
 """2048-pelin liikkumisesta vastaava koodi
 """
 
-from time import time
 
 def liiku_vasen(taulukko: list):
+    """Liikuttaa peliruutua vasemmalle
+
+    Args:
+        taulukko: peli-ruudukko
+    Returns:
+        Liikutetun peliruudun
+    """
+
     k = 0
     for i in taulukko:
         edellinen = None
@@ -42,6 +49,14 @@ def liiku_vasen(taulukko: list):
 
 
 def liiku_oikea(taulukko: list):
+    """Liikuttaa peliruutua oikealle
+
+    Args:
+        taulukko: peli-ruudukko
+    Returns:
+        Liikutetun peliruudun
+    """
+
     k = 0
     for i in taulukko:
         edellinen = None
@@ -80,6 +95,14 @@ def liiku_oikea(taulukko: list):
 
 
 def liiku_ylos(taulukko: list):
+    """Liikuttaa peliruudukko ylös
+
+    Args:
+        taulukko: peliruudukko
+    Returns:
+        liikutetun peliruudukon
+    """
+
     for j in range(4):
         edellinen = None
         e_paikka = None
@@ -117,6 +140,14 @@ def liiku_ylos(taulukko: list):
 
 
 def liiku_alas(taulukko: list):
+    """Liikuttaa peliruudukko alas
+
+    Args:
+        taulukko: peliruudukko
+    Returns:
+        liikutetun peliruudukon
+    """
+
     for j in range(4):
         edellinen = None
         e_paikka = None
@@ -152,11 +183,20 @@ def liiku_alas(taulukko: list):
                     tyhja = k
     return taulukko
 
+
 def mahdolliset_liikkeet(taulukko):
+    """Katsoo mahdolliset nykyisestä peliruudusta
+
+    Args:
+        taulukko: peliruudukko
+    Returns:
+        sanakirjan, joka kertoo, mihin suuntiin on mahdollista liikkua
+    """
+
     sarake_0 = [False, False, False, False]
     sarake_ei_0 = [False, False, False, False]
     sarake_edellinen = [None, None, None, None]
-    liikkeet = {"vasen":False, "oikea":False, "ylos":False, "alas":False}
+    liikkeet = {"vasen": False, "oikea": False, "ylos": False, "alas": False}
 
     for i in range(4):
         rivi_0 = False
@@ -169,7 +209,7 @@ def mahdolliset_liikkeet(taulukko):
             if nykyinen == 0:
                 rivi_0 = True
                 sarake_0[j] = True
-            
+
                 if rivi_ei_0:
                     liikkeet["oikea"] = True
                 if sarake_ei_0[j]:
@@ -193,6 +233,7 @@ def mahdolliset_liikkeet(taulukko):
                     liikkeet["alas"] = True
                 sarake_edellinen[j] = nykyinen
     return liikkeet
+
 
 def tulosta_taulukko(taulukko):
     """Funktio, joka tulostaa peli-ruudukon
