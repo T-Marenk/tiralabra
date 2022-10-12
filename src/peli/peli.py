@@ -6,6 +6,7 @@ from peli.liiku import liiku_vasen, liiku_oikea, liiku_ylos, liiku_alas
 from peli.liiku import mahdolliset_liikkeet
 from ratkoja.ratkoja import tee_paatos
 
+
 def uusi_peli():
     """Funktio, joka luo uuden pelin
 

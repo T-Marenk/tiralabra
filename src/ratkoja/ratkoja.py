@@ -32,7 +32,7 @@ def kay_lapi(taulukko: list):
     return pisteet
 
 
-def maksimi(taulukko, z, tod, alpha, beta):
+def maksimi(taulukko, syvyys, tod, alpha, beta):
     """Funktio, jolla käydään läpi max-solmujen mahdolliset arvot ja palautetaan niistä paras
 
     Args:
@@ -49,13 +49,13 @@ def maksimi(taulukko, z, tod, alpha, beta):
                      "ylos": liiku_ylos, "alas": liiku_alas}
     isoin = (-float('inf'), None)
     liikkeet = mahdolliset_liikkeet(taulukko)
-    for liike in liikkeet:
-        if liikkeet[liike]:
+    for liike in liikkeet.items():
+        if liike[1]:
             taulukko_kopio = Taulukko.kopioi(taulukko)
-            pisteet = mahdollisuus(liikefunktiot[liike](
-                taulukko_kopio), z, tod, alpha, beta)
+            pisteet = mahdollisuus(liikefunktiot[liike[0]](
+                taulukko_kopio), syvyys, tod, alpha, beta)
             if pisteet > isoin[0]:
-                isoin = (pisteet, liike)
+                isoin = (pisteet, liike[0])
             if isoin[0] >= beta:
                 return isoin
             if isoin[0] > alpha:
@@ -63,8 +63,53 @@ def maksimi(taulukko, z, tod, alpha, beta):
     return isoin
 
 
-def mahdollisuus(taulukko, z, tod, alpha, beta):
-    """Funktio, jolla käydään läpi chance-solmujen arvot sekä kutsutaan pisteytysfunktiota oikealla syvyydellä
+def mahdollinen_loppu(taulukko, syvyys, tod, alpha, beta):
+    """Funktio, joka katsoo, onko nykyinen ruudukko häviö
+
+    Args:
+        taulukko: peli-ruudukko
+        syvyys: nykyinen syvyys
+        tod: ruudukon todennäköisyys
+        alpha: suurin löydetty mahdollinen arvo
+        beta: pienin löydetty mahdollinen arvo
+
+    """
+    paikka, _ = Taulukko.tyhjat(taulukko)
+    tyhja = paikka[0]
+    taulukko_kopio = Taulukko.kopioi(taulukko)
+    taulukko_kopio[tyhja[0]][tyhja[1]] = 2
+
+    liikkeet_1 = mahdolliset_liikkeet(taulukko_kopio)
+    voi_liikkua_1 = False
+    suunnat = ["vasen", "oikea", "ylos", "alas"]
+    for suunta in suunnat:
+        if liikkeet_1[suunta]:
+            voi_liikkua_1 = True
+
+    taulukko_kopio_1 = Taulukko.kopioi(taulukko)
+    taulukko_kopio_1[tyhja[0]][tyhja[1]] = 4
+
+    liikkeet_1 = mahdolliset_liikkeet(taulukko_kopio_1)
+    voi_liikkua_2 = False
+    suunnat = ["vasen", "oikea", "ylos", "alas"]
+    for suunta in suunnat:
+        if liikkeet_1[suunta]:
+            voi_liikkua_2 = True
+
+    if voi_liikkua_1 and voi_liikkua_2:
+        return maksimi(taulukko_kopio, syvyys+1, tod, alpha, beta)[0] * 0.9 \
+            + maksimi(taulukko_kopio_1, syvyys+1,
+                      tod, alpha, beta)[0] * 0.1
+    if voi_liikkua_1:
+        return maksimi(taulukko_kopio, syvyys+1, tod, alpha, beta)[0]
+    if voi_liikkua_2:
+        return maksimi(taulukko_kopio_1, syvyys+1, tod, alpha, beta)[0]
+    return kay_lapi(taulukko)
+
+
+def mahdollisuus(taulukko, syvyys, tod, alpha, beta):
+    """Funktio, jolla käydään läpi chance-solmujen arvot sekä kutsutaan
+       pisteytysfunktiota oikealla syvyydellä
 
     Args:
         taulukko: peli-ruudukko
@@ -76,67 +121,30 @@ def mahdollisuus(taulukko, z, tod, alpha, beta):
         Nykyisen ruudukon pisteet tai painotetun keskiarvon tulevien max-solmujen pisteistä
     """
 
-    tyhat_paikat, maara = Taulukko.tyhjat(taulukko)
-    if z >= 3 and maara >= 5:
+    tyhjat_paikat, maara = Taulukko.tyhjat(taulukko)
+    if syvyys >= 3 and maara >= 5:
         return kay_lapi(taulukko)
-    if z == 5:
+    if syvyys == 5:
         return kay_lapi(taulukko)
     if maara == 1:
-        tyhja = tyhat_paikat[0]
-        taulukko_kopio = Taulukko.kopioi(taulukko)
-        taulukko_kopio[tyhja[0]][tyhja[1]] = 2
-
-        liikkeet_1 = mahdolliset_liikkeet(taulukko_kopio)
-        voi_liikkua_1 = False
-        suunnat = ["vasen", "oikea", "ylos", "alas"]
-        for suunta in suunnat:
-            if liikkeet_1[suunta]:
-                voi_liikkua_1 = True
-
-        taulukko_kopio_1 = Taulukko.kopioi(taulukko)
-        taulukko_kopio_1[tyhja[0]][tyhja[1]] = 4
-
-        liikkeet_1 = mahdolliset_liikkeet(taulukko_kopio_1)
-        voi_liikkua_2 = False
-        suunnat = ["vasen", "oikea", "ylos", "alas"]
-        for suunta in suunnat:
-            if liikkeet_1[suunta]:
-                voi_liikkua_2 = True
-
-        if voi_liikkua_1 and voi_liikkua_2:
-            return maksimi(taulukko_kopio, z+1, tod, alpha, beta)[0] * 0.9 + maksimi(taulukko_kopio_1, z+1, tod, alpha, beta)[0] * 0.1
-        elif voi_liikkua_1:
-            return maksimi(taulukko_kopio, z+1, tod, alpha, beta)[0]
-        elif voi_liikkua_2:
-            return maksimi(taulukko_kopio_1, z+1, tod, alpha, beta)[0]
-        else:
-            return kay_lapi(taulukko)
+        return mahdollinen_loppu(taulukko, syvyys, tod, alpha, beta)
 
     pienin = float('inf')
 
-    for tyhja in tyhat_paikat:
+    for tyhja in tyhjat_paikat:
         pisteet = 0
         yht_tod_keskiarvolle = 0
-
-        ruudukon_tod = (0.9 * (1/maara)) * tod
-        if ruudukon_tod < 0.001:
-            pass
-        else:
-            t = Taulukko.kopioi(taulukko)
-            t[tyhja[0]][tyhja[1]] = 2
-            paras = maksimi(t, z+1, ruudukon_tod, alpha, beta)
-            pisteet += paras[0] * 0.9
-            yht_tod_keskiarvolle += 0.9
-
-        ruudukon_tod = (0.1 * (1/maara)) * tod
-        if ruudukon_tod < 0.001:
-            pass
-        else:
-            t = Taulukko.kopioi(taulukko)
-            t[tyhja[0]][tyhja[1]] = 4
-            paras = maksimi(t, z+1, ruudukon_tod, alpha, beta)
-            pisteet += paras[0] * 0.1
-            yht_tod_keskiarvolle += 0.1
+        for uusi in [(2, 0.9), (4, 0.1)]:
+            ruudukon_tod = (uusi[1] * (1/maara)) * tod
+            if ruudukon_tod < 0.001:
+                pass
+            else:
+                taulukko_kopio = Taulukko.kopioi(taulukko)
+                taulukko_kopio[tyhja[0]][tyhja[1]] = uusi[0]
+                paras = maksimi(taulukko_kopio, syvyys+1,
+                                ruudukon_tod, alpha, beta)
+                pisteet += paras[0] * uusi[1]
+                yht_tod_keskiarvolle += uusi[1]
 
         if yht_tod_keskiarvolle == 0:
             pisteet = kay_lapi(taulukko)
@@ -170,18 +178,4 @@ def tee_paatos(taulukko: list):
     print("")
     if suunta is not None:
         return suunta, aika
-    else:
-        return "lopeta", aika
-
-
-if __name__ == "__main__":
-    taulukko = [[2048, 128, 64, 2],
-                [1024, 256, 4, 16],
-                [16, 128, 16, 4],
-                [0, 2, 2, 2]]
-"""
-[2048, 128, 4, 2]
-[1024, 256, 8, 4]
-[128, 64, 32, 2]
-[16, 2, 4, 0]
-"""
+    return "lopeta", aika

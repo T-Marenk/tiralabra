@@ -5,8 +5,9 @@ from collections import deque
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException
 from ratkoja.ratkoja import tee_paatos
+
 
 def yhdista():
     """Funktio, joka yhdistaa netti peliin
@@ -18,6 +19,7 @@ def yhdista():
     driver = webdriver.Chrome('assets/chromedriver')
     driver.get(url)
     return driver
+
 
 def hae_taulukko(driver):
     """Funktio, joka hakee nettipelistä nykyisen taulukon
@@ -77,12 +79,12 @@ def main():
         try:
             jatka = driver.find_element(By.CLASS_NAME, "keep-playing-button")
             jatka.click()
-        except NoSuchElementException:
+        except ElementNotInteractableException:
             pass
 
         time.sleep(0.05)
 
-    suurin_arvo = None
+    suurin_arvo = -float('inf')
     for rivi in taulukko:
         suurin_rivi = max(rivi)
         if suurin_rivi > suurin_arvo:
