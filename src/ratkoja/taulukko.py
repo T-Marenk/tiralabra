@@ -1,3 +1,7 @@
+"""Ratkojaa varten luotu luokka, joka auttaa taulukoiden kanssa
+"""
+
+
 class Taulukko:
     """Luokka, jonka tehtävä on taulukon läpikäyminen
     """
@@ -12,10 +16,11 @@ class Taulukko:
             Kopion ruudukosta
         """
 
-        t = []
-        for i in taulukko:
-            t.append(i.copy())
-        return t
+        taulukko_kopio = []
+        for indeksi in range(4):
+            rivi = taulukko[indeksi]
+            taulukko_kopio.append(rivi.copy())
+        return taulukko_kopio
 
     def tyhjat(taulukko: list):
         """Etsii nykyiseltä laudalta tyhjat paikat

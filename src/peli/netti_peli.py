@@ -89,7 +89,7 @@ def main():
         suurin_rivi = max(rivi)
         if suurin_rivi > suurin_arvo:
             suurin_arvo = suurin_rivi
-    suurin_palikka = max(taulukko)
+    suurin_palikka = max(suurin_rivi)
     suurin = max(ajat)
     pienin = min(ajat)
     keskiarvo = sum(ajat)/len(ajat)
