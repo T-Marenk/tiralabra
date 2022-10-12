@@ -137,7 +137,7 @@ def mahdollisuus(taulukko, syvyys, tod, alpha, beta):
         for uusi in [(2, 0.9), (4, 0.1)]:
             ruudukon_tod = (uusi[1] * (1/maara)) * tod
             if ruudukon_tod < 0.001:
-                pass
+                continue
             else:
                 taulukko_kopio = Taulukko.kopioi(taulukko)
                 taulukko_kopio[tyhja[0]][tyhja[1]] = uusi[0]
@@ -146,7 +146,7 @@ def mahdollisuus(taulukko, syvyys, tod, alpha, beta):
                 pisteet += paras[0] * uusi[1]
                 yht_tod_keskiarvolle += uusi[1]
 
-        if yht_tod_keskiarvolle == 0:
+        if pisteet == 0:
             pisteet = kay_lapi(taulukko)
         else:
             pisteet /= yht_tod_keskiarvolle
