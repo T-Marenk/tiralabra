@@ -28,4 +28,23 @@ pisteytyksessä annetaan niin sanottuja bonuksia tyhjistä laatoista.
 |5|4|3|2|
 |4|3|2|1|
 
+## Saavutettu aikavaativuus
+
+Loppulliseksi aikavaativuudeksi algortimille tuli
+
+$O(b^n)$
+
+Missä _b_ on kaikki mahdolliset haarat, jotka algortimi voi katsoa ja _n_ on syyvyys, jolle algortimi meni
+
+Alpha-beta jaon takia algortimi harvoin käy läpi kaikkia mahdollisia haaroja, mutta se on edelleen mahdollista
+
+Syvyys algoritmille on 3-5, riippuen tyhjien paikkojen määrästä
+
+## Saavutettu tilavaativuus
+
+## Puutteet 
+
+## Lähteet
+
+
 
