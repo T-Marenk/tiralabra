@@ -12,6 +12,8 @@ Projektin tarkoituksena on luoda mahdollisimman tehokas 2048-pelin ratkoja hyöd
 
 ![Toteutusdokumentti](./dokumentaatio/toteutusdokumentti.md)
 
+![Käyttöohje](./dokumentaatio/kayttoohje.md)
+
 ### Viikkoraportit
 
 ![Viikkoraportti 1](./dokumentaatio/viikkoraportit/viikkoraportti1.md)
@@ -60,6 +62,8 @@ Pelkän pelin käynnistys:
 ```bash
 poetry run invoke start
 ```
+
+Tarkemmat tiedot ohjelman suorittamiesta saat [käyttöohjeista](./dokumentaatio/kayttoohje.md)
 
 ## Testaaminen
 
