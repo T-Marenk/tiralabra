@@ -24,6 +24,8 @@ Projektin tarkoituksena on luoda mahdollisimman tehokas 2048-pelin ratkoja hyöd
 
 ![Viikkoraportti 5](./dokumentaatio/viikkoraportit/viikkoraportti5.md)
 
+![Viikkoraportti 6](./dokumentaatio/viikkoraportit/viikkoraportti6.md)
+
 ## Ohjelman vaatimukset
 
 Projekti käyttää python-versiota 3.10. Tämän lisäksi projektissa on hyödynnetty poetrya, joka tulee olla asennettuna tietokoneella
