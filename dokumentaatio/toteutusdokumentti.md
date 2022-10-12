@@ -42,9 +42,37 @@ Syvyys algoritmille on 3-5, riippuen tyhjien paikkojen määrästä
 
 ## Saavutettu tilavaativuus
 
+Lopullinen tilavaativuus algoritmilla on
+
+$O(b*n)$
+
+Missä _b_ on kaikki mahdolliset haarat, jotka algortimi voi katsoa ja _n_ on syyvyys, jolle algortimi meni
+
 ## Puutteet 
+
+Algortimin isoimpia ongelmia tällä hetkellä on nopeus, jolla se toimii. Jos olisi mahdollista lisätä katsottavan syvyyden määrä ilman, että kulunut aika
+yhden siirron katsomiselle nousisi älyttömästi, niin se olisi huomattavasti tehokkaampi
+
+Yksi helppo tapa lisätä algoritmia olisi luoda taulukko, jossa pidetään kirjaa siitä, mitkä nykyisen taulukon pisteet ovat, jos se on jo nähty. Toinen tapa
+olisi myös luoda taulukko siiroille, eli jokaista riviä ei tarvitsisi manuaalisesti siirtä vaan se voitaisiin ajassa $O(1)$ katsoa taulukosta ja korvata vanha taulukko uudella.
 
 ## Lähteet
 
+Projektin tekemistä varten olleen hyödynnetty seuraavia lähteitä
 
+Erityisesti lähteistä [4], [5] ja [7] on ollut hyötyä. Näiden avulla olen soveltanut nykyinen Expectiminimax algoritmin, joka on oikeastaan MiniGminimax algoritmi, johon sain yhdistettyä alpha-beta-karsinnan. 
+
+[1] Wikipedia, Expectiminimax. 2020. URL:https://en.wikipedia.org/wiki/Expectiminimax
+
+[2] Wikipedia, 2048 (video game). 2022. URL:https://en.wikipedia.org/wiki/2048_(video_game)
+
+[3] M. Simic, Expectimax Search Algorithm. 2021. URL:https://www.baeldung.com/cs/expectimax-search
+
+[4] Y. Zhou, From AlhaGo Zero to 2048. 2019. URL:https://www.cse.msu.edu/~zhaoxi35/DRL4KDD/2.pdf
+
+[5] E. Melkó, B. Nagy. Optimal strategy in games with chance nodes. 2007. URL:https://www.researchgate.net/publication/220123091_Optimal_strategy_in_games_with_chance_nodes
+
+[6] StackOverflow, What is the optimal algorithm for the game 2048?. 2014. URL:https://stackoverflow.com/questions/22342854/what-is-the-optimal-algorithm-for-the-game-2048 (Ensimmäinen vastaus)
+
+[7] Wikipedia, Alpha-beta pruning. 2022. URL:https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning
 
