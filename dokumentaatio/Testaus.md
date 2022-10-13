@@ -60,27 +60,27 @@ poetry run invoke ratkoja
 
 ### Suurin saavutettu arvo
 
-Alla on taulukoitu, että kun pelejä on suoritettu 2 kappaletta, niin kuinka suuren osan ajasta se on päässyt kyseiseen arvoon ja maksimisyvyys on 5
+Alla on taulukoitu, että kun pelejä on suoritettu 1 kappaletta, niin kuinka suuren osan ajasta se on päässyt kyseiseen arvoon ja maksimisyvyys on 6
 
 |Saavutettu arvo|512|1024|2048|4096|
 |:-:|:-:|:-:|:-:|:-:|
-|Kerrat|2|2|1|0|
-|Prosenttina|100%|100%|50%|0%|
+|Kerrat|1|1|1|0|
+|Prosenttina|100%|100%|100%|0%|
 
 ### Kulunut aika
 
-Kun testejä on suoritettu 2 kappaletta, niin algoritmilla on mennyt maksimisyvyydellä 5
+Kun testejä on suoritettu 1 kappaletta, niin algoritmilla on mennyt maksimisyvyydellä 6
 
 Vähiten aikaa vienyt siirto:
 
-- $1.811*10^-5$ s
+- $5.98*10^-5$ s
 
 Eniten aikaa vienyt siirto:
 
-- 0.5468 s
+- 2.77 s
 
 Keskiarvo joka siirtoon:
 
-- 0.08301 s
+- 0.414 s
 
 
