@@ -8,7 +8,8 @@ from ratkoja.taulukko import Taulukko
 
 
 # isoin_pisteet = [[7, 6, 5, 4], [6, 5, 4, 3], [5, 4, 3, 2], [4, 3, 2, 1]]
-isoin_pisteet = [[65536, 32768, 16384, 8192], [512, 1024, 2048, 4096], [256, 128, 64, 32], [2, 4, 8, 16]]
+isoin_pisteet = [[65536, 32768, 16384, 8192], [
+    512, 1024, 2048, 4096], [256, 128, 64, 32], [2, 4, 8, 16]]
 tyhja_pisteet = [[1, 2, 3, 4], [8, 7, 6, 5], [9, 10, 11, 12], [16, 15, 14, 13]]
 
 
@@ -27,11 +28,11 @@ def kay_lapi(taulukko: list):
         for j in range(4):
             nykyinen_arvo = taulukko[i][j]
             if nykyinen_arvo == 0:
-                pisteet += tyhja_pisteet[i][j] * 8
+                pisteet += tyhja_pisteet[i][j] * 2048
                 tyhjat += 1
                 continue
             pisteet += nykyinen_arvo * isoin_pisteet[i][j]
-    pisteet += tyhjat * 8
+    pisteet += tyhjat * 512
     return pisteet
 
 
@@ -125,11 +126,9 @@ def mahdollisuus(taulukko, syvyys, tod, alpha, beta):
     """
 
     tyhjat_paikat, maara = Taulukko.tyhjat(taulukko)
-    if syvyys >= 4 and maara >= 6:
+    if syvyys >= 4 and maara >= 8:
         return kay_lapi(taulukko)
-    if syvyys >= 5 and maara >= 4:
-        return kay_lapi(taulukko)
-    if syvyys == 6:
+    if syvyys >= 6 and maara >= 1:
         return kay_lapi(taulukko)
     if maara == 1:
         return mahdollinen_loppu(taulukko, syvyys, tod, alpha, beta)
@@ -143,13 +142,12 @@ def mahdollisuus(taulukko, syvyys, tod, alpha, beta):
             ruudukon_tod = (uusi[1] * (1/maara)) * tod
             if ruudukon_tod < 0.001:
                 continue
-            else:
-                taulukko_kopio = Taulukko.kopioi(taulukko)
-                taulukko_kopio[tyhja[0]][tyhja[1]] = uusi[0]
-                paras = maksimi(taulukko_kopio, syvyys+1,
-                                ruudukon_tod, alpha, beta)
-                pisteet += paras[0] * uusi[1]
-                yht_tod_keskiarvolle += uusi[1]
+            taulukko_kopio = Taulukko.kopioi(taulukko)
+            taulukko_kopio[tyhja[0]][tyhja[1]] = uusi[0]
+            paras = maksimi(taulukko_kopio, syvyys+1,
+                            ruudukon_tod, alpha, beta)
+            pisteet += paras[0] * uusi[1]
+            yht_tod_keskiarvolle += uusi[1]
 
         if pisteet == 0:
             pisteet = kay_lapi(taulukko)
