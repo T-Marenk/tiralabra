@@ -7,7 +7,9 @@ from peli.liiku import mahdolliset_liikkeet
 from ratkoja.taulukko import Taulukko
 
 
-isoin_pisteet = [[7, 6, 5, 4], [6, 5, 4, 3], [5, 4, 3, 2], [4, 3, 2, 1]]
+# isoin_pisteet = [[7, 6, 5, 4], [6, 5, 4, 3], [5, 4, 3, 2], [4, 3, 2, 1]]
+isoin_pisteet = [[65536, 32768, 16384, 8192], [512, 1024, 2048, 4096], [256, 128, 64, 32], [2, 4, 8, 16]]
+tyhja_pisteet = [[1, 2, 3, 4], [8, 7, 6, 5], [9, 10, 11, 12], [16, 15, 14, 13]]
 
 
 def kay_lapi(taulukko: list):
@@ -25,10 +27,11 @@ def kay_lapi(taulukko: list):
         for j in range(4):
             nykyinen_arvo = taulukko[i][j]
             if nykyinen_arvo == 0:
+                pisteet += tyhja_pisteet[i][j] * 8
                 tyhjat += 1
                 continue
             pisteet += nykyinen_arvo * isoin_pisteet[i][j]
-    pisteet += tyhjat * 16
+    pisteet += tyhjat * 8
     return pisteet
 
 
@@ -122,9 +125,11 @@ def mahdollisuus(taulukko, syvyys, tod, alpha, beta):
     """
 
     tyhjat_paikat, maara = Taulukko.tyhjat(taulukko)
-    if syvyys >= 3 and maara >= 5:
+    if syvyys >= 4 and maara >= 6:
         return kay_lapi(taulukko)
-    if syvyys == 5:
+    if syvyys >= 5 and maara >= 4:
+        return kay_lapi(taulukko)
+    if syvyys == 6:
         return kay_lapi(taulukko)
     if maara == 1:
         return mahdollinen_loppu(taulukko, syvyys, tod, alpha, beta)
