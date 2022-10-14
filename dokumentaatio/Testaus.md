@@ -23,9 +23,9 @@ poetry run invoke test
 
 ### Testikattavuus
 
-Tämän hetkinen testikattavuus on 71%
+Tämän hetkinen testikattavuus on 85%
 
-![](./kuvat/coverage-report_4.png)
+![](./kuvat/coverage-report_6.png)
 
 ## Suorituskyvyn testaaminen
 
