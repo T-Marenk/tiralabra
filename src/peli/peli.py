@@ -63,6 +63,7 @@ def uusi_palikka(taulukko):
             if nykyinen == 0:
                 maara += 1
                 mahdolliset.append((rivi, paikka))
+    print(maara)
     sijoitus = randint(0, maara-1)
     valinta = randint(1, 10)
     if valinta == 9:
@@ -71,7 +72,6 @@ def uusi_palikka(taulukko):
         uusi = 2
     paikka = mahdolliset[sijoitus]
     taulukko[paikka[0]][paikka[1]] = uusi
-    return taulukko
 
 def main_ratkoja():
     """Ratkojan peliä pyörittävä funktio

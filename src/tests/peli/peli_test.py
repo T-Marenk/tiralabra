@@ -1,4 +1,5 @@
 import unittest
+import random
 from peli.peli import *
 from peli.liiku import mahdolliset_liikkeet
 
@@ -7,12 +8,29 @@ class TestPeli(unittest.TestCase):
     def setUp(self):
         self.taulukko1 = [[2, 4, 0, 0], [
             2, 0, 2, 0], [0, 0, 0, 0], [2, 0, 0, 0]]
+
         self.taulukko2 = [[2, 4, 0, 0], [
             8, 0, 0, 0], [4, 0, 0, 0], [2, 0, 0, 0]]
+
+        self.taulukko2_alkuperainen = [[2, 4, 0, 0], [
+            8, 0, 0, 0], [4, 0, 0, 0], [2, 0, 0, 0]]
+
+        self.taulukko2_uusi = [[2, 4, 0, 0], [
+            8, 2, 0, 0], [4, 0, 0, 0], [2, 0, 0, 0]]
+
         self.taulukko3 = [[2, 0, 0, 0], [
             8, 0, 0, 0], [4, 0, 0, 0], [2, 0, 4, 0]]
         self.taulukko4 = [[0, 0, 0, 2], [
             0, 0, 0, 0], [0, 0, 0, 4], [2, 4, 8, 4]]
+
+        self.taulukko5 = [[2, 4, 0, 2], [
+            2, 2, 2, 2], [2, 2, 2, 2], [2, 2, 2, 2]]
+
+        self.taulukko5_alkuperainen = [[2, 4, 0, 2], [
+            2, 2, 2, 2], [2, 2, 2, 2], [2, 2, 2, 2]]
+
+        self.taulukko5_uusi = [[2, 4, 4, 2], [
+            2, 2, 2, 2], [2, 2, 2, 2], [2, 2, 2, 2]]
 
     def test_uusi_peli_taulukko_luotu_oikein(self):
         taulukko = uusi_peli()
@@ -55,3 +73,18 @@ class TestPeli(unittest.TestCase):
 
         self.assertEqual(arvo1["oikea"], True)
         self.assertEqual(arvo2["oikea"], False)
+
+    def test_uusi_palikka_luotu_oikein(self): 
+        random.seed(1) # Asetetaan testausta varten aina sama satunnaisuus, arvo 2
+        uusi_palikka(self.taulukko2) 
+
+        random.seed(11)
+        uusi_palikka(self.taulukko5) # Arvo 4
+
+        self.assertNotEqual(self.taulukko2_alkuperainen, self.taulukko2)
+
+        self.assertEqual(self.taulukko2_uusi, self.taulukko2)
+
+        self.assertNotEqual(self.taulukko5_alkuperainen, self.taulukko5)
+
+        self.assertEqual(self.taulukko5_uusi, self.taulukko5)
