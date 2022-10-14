@@ -79,7 +79,7 @@ def main():
         try:
             jatka = driver.find_element(By.CLASS_NAME, "keep-playing-button")
             jatka.click()
-        except ElementNotInteractableException:
+        except Exception as e:
             pass
 
         time.sleep(0.05)

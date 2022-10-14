@@ -1,0 +1,36 @@
+
+Suurin laatta: 2048
+Suurin aika: 1.3388705253601074 s
+Pienin aika: 1.9788742065429688e-05 s
+Keskiarvot ajoista: 0.3119354481222453
+
+Suurin laatta: 1024
+Suurin aika: 0.944298505783081 s
+Pienin aika: 1.8596649169921875e-05 s
+Keskiarvot ajoista: 0.3217296048798205
+
+Suurin laatta: 2048
+Suurin aika: 0.8990364074707031 s
+Pienin aika: 1.7404556274414062e-05 s
+Keskiarvot ajoista: 0.3134115463993715
+
+Suurin laatta: 2048
+Suurin aika: 1.3511862754821777 s
+Pienin aika: 1.6927719116210938e-05 s
+Keskiarvot ajoista: 0.3542322403710131
+
+Suurin laatta: 512
+Suurin aika: 0.9867815971374512 s
+Pienin aika: 1.9788742065429688e-05 s
+Keskiarvot ajoista: 0.34722726666010345
+
+Suurin laatta: 1024
+Suurin aika: 1.2415399551391602 s
+Pienin aika: 1.9311904907226562e-05 s
+Keskiarvot ajoista: 0.37691617727279664
+
+Suurin laatta: 512
+Suurin aika: 1.011254072189331 s
+Pienin aika: 1.7404556274414062e-05 s
+Keskiarvot ajoista: 0.3135519551654016
+
