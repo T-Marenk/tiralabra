@@ -23,10 +23,25 @@ pisteytyksessä annetaan niin sanottuja bonuksia tyhjistä laatoista.
 
 |||||
 |:-:|:-:|:-:|:-:|
-|7|6|5|4|
-|6|5|4|3|
-|5|4|3|2|
-|4|3|2|1|
+|65536|32768|16384|8192|
+|512|1024|2048|4096|
+|256|128|64|32|
+|2|4|8|16|
+
+_Taulukko 1: Painotusarvot laattojen arvoille_
+
+Käytetyn painotustaulukon tarkoituksena on rohkaista algoritmia pitämään laatat tietyssä järjestyksessä ja pitää isoimmat laatat mahdollisimman ylhällä. Painotustaulukko menee niin sanotusti käärmeenmuotoisesti, jolloin isoja lukuja koitetaan pitää kutakin vain yksi kappale ja laattojen yhdistäminen onnistuu käärmettä seuraten
+
+Tyhjien laattojen pisteet annetaan puolestaan kahdella eri tavalla. Ensimmäinen on käänteinen pistetaulukko laattojen painotustaulukkoon nähden. Tämän taulukot pisteet eivät kuitenkaan kasva eksponentaalisesti kuten pisteiden arvot (ks. taulukko 2). Tällä yritetään rohkaista algoritmia pitämään tyhjät palikat käänteisesti laattoihin nähden. Lisäksi tyhjien paikkojen määrä kerrotaan kertoimella 512, jolla pyritään rohkaisemaan algoritmia pitämään mahdollisimman paljon tyhjiä ruutuja
+
+|||||
+|:-:|:-:|:-:|:-:|
+|2048|4096|6144|8192|
+|16384|14336|12288|10240|
+|18432|20480|22528|24576|
+|32768|30720|28672|26624|
+
+_Taulukko 2: Pisteet tyhjistä ruuduista_
 
 ## Saavutettu aikavaativuus
 
@@ -38,7 +53,7 @@ Missä _b_ on kaikki mahdolliset haarat, jotka algortimi voi katsoa ja _n_ on sy
 
 Alpha-beta jaon takia algortimi harvoin käy läpi kaikkia mahdollisia haaroja, mutta se on edelleen mahdollista
 
-Syvyys algoritmille on 3-5, riippuen tyhjien paikkojen määrästä
+Syvyys algoritmille on 4-6, riippuen tyhjien paikkojen määrästä
 
 ## Saavutettu tilavaativuus
 
@@ -55,6 +70,8 @@ yhden siirron katsomiselle nousisi älyttömästi, niin se olisi huomattavasti t
 
 Yksi helppo tapa lisätä algoritmia olisi luoda taulukko, jossa pidetään kirjaa siitä, mitkä nykyisen taulukon pisteet ovat, jos se on jo nähty. Toinen tapa
 olisi myös luoda taulukko siiroille, eli jokaista riviä ei tarvitsisi manuaalisesti siirtä vaan se voitaisiin ajassa $O(1)$ katsoa taulukosta ja korvata vanha taulukko uudella.
+
+Algoritmin päätöksen tekoa voisi tehostaa lisäämällä vielä lisää heuristiikkaa sille. Ohjelman toteutuksessa olen käyttänyt vain painotettujen arvojen heuristiikkaa sekä tyhjien ruutujen bonuksia. Lisäämällä muita heuristiikkoja mukaan, kuten esimerkiksi ns. tasaisuus heuristiikka, joka katsoo, ovatko kaikki palaset saman arvoisia, voitaisiin mahdollisesti päästä vielä parempiin tuloksiin.
 
 ## Lähteet
 
