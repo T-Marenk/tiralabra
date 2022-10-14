@@ -49,5 +49,17 @@ poetry run invoke start
 Ohjelma kysyy aluksi, montako kertaa haluat suorittaa ratkojan. Anna vastauksena **positiivinen kokonaisluku**, jonka jälkeen ohjelma pyörittää ratkojan
 halutun määrän kertoja
 
+Ohjelman aikana tulostetaan komentoriville kunkin siirron kohdalla kyseiseen siirtoon kulunut aika.
+
 Suoritusten jälkeen ohjelma palauttaa tiedot siitä, mikä oli jokaisen siirron päättämisessä suurin käytetty aika, pienin käytetty aika, keskiarvo päätöksiin
 menneestä ajasta sekä mikä oli joka kerralla saavutettu suurin arvo
+
+### Komentoriviversio
+
+Ohjelman suoritukseksi komentoriviltä syötä komento
+
+```bash
+poetry run invoke ratkoja
+```
+
+Komentorivi versio suoritetaan yhden kerran. Joka siirron kohdalla näytetään siirron päättämiseen kulunut aika, samoin kuin nettiversiossa
