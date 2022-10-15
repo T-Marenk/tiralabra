@@ -41,7 +41,7 @@ Suorituskyvyn testaamista varten ratkoja suoritetaan alusta loppuun ja joka test
 
 - Suurin arvo taulukossa pelin loputtua
 
-Tämä saadaan tehtyä niin, että kun peliä ratkojaa kutsutaan kohteesta ![Netti-peli](/src/peli/netti_peli.py), otetaan ylös kulunut aika ja pelin päätyttyä tulokset tulostetaan komentoriville
+Tämä saadaan tehtyä niin, että kun peliä ratkojaa kutsutaan kohteesta ![Netti-peli](/src/peli/netti_peli.py), otetaan ylös kulunut aika ja pelin päätyttyä tulokset tulostetaan komentoriville. Lisäksi joka suorituskerran jälkeen kirjoitetaan tämä data tiedostoon [ajat.txt](../data/ajat.txt). Täältä pääsee näkemään myös kaikki keräämäni data, jonka olen alla kirjoittanut
 
 
 ### Suorituskyky testausten ajaminen
@@ -60,12 +60,12 @@ poetry run invoke ratkoja
 
 ### Suurin saavutettu arvo
 
-Alla on taulukoitu, että kun pelejä on suoritettu 1 kappaletta, niin kuinka suuren osan ajasta se on päässyt kyseiseen arvoon ja maksimisyvyys on 6
+Alla on taulukoitu, että kun pelejä on suoritettu 47 kappaletta, niin kuinka suuren osan ajasta se on päässyt kyseiseen arvoon ja maksimisyvyys on 6
 
 |Saavutettu arvo|512|1024|2048|4096|
 |:-:|:-:|:-:|:-:|:-:|
-|Kerrat|1|1|1|0|
-|Prosenttina|100%|100%|100%|0%|
+|Kerrat|47|40|24|4|
+|Prosenttina|100%|85%|51%|9%|
 
 ### Kulunut aika
 
@@ -73,14 +73,12 @@ Kun testejä on suoritettu 1 kappaletta, niin algoritmilla on mennyt maksimisyvy
 
 Vähiten aikaa vienyt siirto:
 
-- $5.98*10^-5$ s
+- $1.55*10^-5$ s
 
 Eniten aikaa vienyt siirto:
 
-- 2.77 s
+- 1.69 s
 
 Keskiarvo joka siirtoon:
 
-- 0.414 s
-
-
+- 0.324 s
