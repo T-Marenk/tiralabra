@@ -41,7 +41,7 @@ Suorituskyvyn testaamista varten ratkoja suoritetaan alusta loppuun ja joka test
 
 - Suurin arvo taulukossa pelin loputtua
 
-Tämä saadaan tehtyä niin, että kun peliä ratkojaa kutsutaan kohteesta ![Netti-peli](/src/peli/netti_peli.py), otetaan ylös kulunut aika ja pelin päätyttyä tulokset tulostetaan komentoriville. Lisäksi joka suorituskerran jälkeen kirjoitetaan tämä data tiedostoon [ajat.txt](../data/ajat.txt). Täältä pääsee näkemään myös kaikki keräämäni data, jonka olen alla kirjoittanut
+Tämä saadaan tehtyä niin, että kun peliä ratkojaa kutsutaan kohteesta ![Netti-peli](/src/peli/netti_peli.py), otetaan ylös kulunut aika ja pelin päätyttyä tulokset tulostetaan komentoriville. Lisäksi joka suorituskerran jälkeen kirjoitetaan tämä data tiedostoon [ajat.txt](../data/ajat.txt). Täältä pääsee näkemään myös kaikki keräämäni data, jota olen alla käyttänyt
 
 
 ### Suorituskyky testausten ajaminen
