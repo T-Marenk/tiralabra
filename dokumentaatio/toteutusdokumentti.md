@@ -32,14 +32,14 @@ _Taulukko 1: Painotusarvot laattojen arvoille_
 
 Käytetyn painotustaulukon tarkoituksena on rohkaista algoritmia pitämään laatat tietyssä järjestyksessä ja pitää isoimmat laatat mahdollisimman ylhällä. Painotustaulukko menee niin sanotusti käärmeenmuotoisesti, jolloin isoja lukuja koitetaan pitää kutakin vain yksi kappale ja laattojen yhdistäminen onnistuu käärmettä seuraten
 
-Tyhjien laattojen pisteet annetaan puolestaan kahdella eri tavalla. Ensimmäinen on käänteinen pistetaulukko laattojen painotustaulukkoon nähden. Tämän taulukot pisteet eivät kuitenkaan kasva eksponentaalisesti kuten pisteiden arvot (ks. taulukko 2). Tällä yritetään rohkaista algoritmia pitämään tyhjät palikat käänteisesti laattoihin nähden. Lisäksi tyhjien paikkojen määrä kerrotaan kertoimella 512, jolla pyritään rohkaisemaan algoritmia pitämään mahdollisimman paljon tyhjiä ruutuja
+Tyhjien laattojen pisteet annetaan puolestaan kahdella eri tavalla. Ensimmäinen on käänteinen pistetaulukko laattojen painotustaulukkoon nähden. Tämän taulukot pisteet eivät kuitenkaan kasva eksponentaalisesti kuten pisteiden arvot (ks. taulukko 2). Pistetaulukon kyseinen luku kerrotaan taulukon suurimmalla laatalla sekä kertoimella viisi. Tällä yritetään rohkaista algoritmia pitämään tyhjät palikat käänteisesti laattoihin nähden. Lisäksi tyhjien paikkojen määrä kerrotaan kertoimella $suurin/4$, jolla pyritään rohkaisemaan algoritmia pitämään mahdollisimman paljon tyhjiä ruutuja
 
 |||||
 |:-:|:-:|:-:|:-:|
-|2048|4096|6144|8192|
-|16384|14336|12288|10240|
-|18432|20480|22528|24576|
-|32768|30720|28672|26624|
+|1|2|3|4|
+|8|7|6|5|
+|9|10|11|12|
+|16|15|14|13|
 
 _Taulukko 2: Pisteet tyhjistä ruuduista_
 
