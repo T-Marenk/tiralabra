@@ -180,9 +180,7 @@ def tee_paatos(taulukko: list):
     beta = float('inf')
     suunta = maksimi(taulukko, 1, 1, alpha, beta)[1]
     loppu = time()
-    aika = loppu-alku
-    print("Päätökseen kulunut aika: ", aika, "s")
-    print("")
+    aika = loppu-alku 
     if suunta is not None:
         return suunta, aika
     return "lopeta", aika

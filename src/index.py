@@ -1,21 +1,34 @@
 """Kutsuu pelin netti version ratkojalle
 """
 
+import os
 from peli.netti_peli import main as run
 from config import AIKA_TIEDOSTO_POLKU
 
 def main():
     """Kutsuu pelin
     """
-    
-    kerrat = int(input("Montako kertaa haluat ajaa ratkojan?\n"))
+
+    os.system('cls' if os.name == 'nt' else 'clear')
+    hyv = False
+    while not hyv:  
+        kerrat = (input("Montako kertaa haluat suorittaa ratkojan?\n"))
+        try:
+            kerrat = int(kerrat)
+        except Exception as e:
+            print("Anna positiivinen kokonaisluku")
+            continue
+        if kerrat > 0:
+            hyv = True
+        else:
+            print("Anna positiivinen kokonaisluku")
+    print("Suoritusta aloitetaan...")
     suurimmat = []
     s_ajat = []
     p_ajat = []
     keskiarvot = []
     for i in range(kerrat):
-        print("Kerta", i+1)
-        suurin_palikka, suurin, pienin, keskiarvo = run()
+        suurin_palikka, suurin, pienin, keskiarvo = run(i+1)
         with open(AIKA_TIEDOSTO_POLKU, "a") as tie:
             tie.write(f"Suurin laatta: {suurin_palikka}\nSuurin aika: {suurin} s\nPienin aika: {pienin} s\nKeskiarvot ajoista: {keskiarvo}\n\n")
         suurimmat.append(suurin_palikka)

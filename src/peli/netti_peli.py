@@ -1,6 +1,7 @@
 """Välikäännös, joka antaa ratkojan pelata 2048-peliä internetissä"""
 
 import time
+import os
 from collections import deque
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -44,7 +45,7 @@ def hae_taulukko(driver):
     return matriisi
 
 
-def main():
+def main(kerta):
     """Pääfunktio, joka pyörittää nettiselainta
     Returns:
         Isoimmat ajat siirroissa, pienimmät ajat siirroissa, isoimman palikan,
@@ -66,6 +67,9 @@ def main():
     while komento != "lopeta":
         taulukko = hae_taulukko(driver)
         komento, aika = tee_paatos(taulukko)
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print("Kerta", kerta)
+        print("Päätökseen kulunut aika: ", aika, "s")
         ajat.append(aika)
         if komento == "vasen":
             body.send_keys(Keys.ARROW_LEFT)
