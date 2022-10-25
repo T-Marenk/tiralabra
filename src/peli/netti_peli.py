@@ -10,14 +10,13 @@ from selenium.common.exceptions import NoSuchElementException, ElementNotInterac
 from ratkoja.ratkoja import tee_paatos
 
 
-def yhdista():
+def yhdista(ajuri, url):
     """Funktio, joka yhdistaa netti peliin
     Returns:
         selaimen ajurin
     """
 
-    url = 'https://play2048.co/'
-    driver = webdriver.Chrome('assets/chromedriver')
+    driver = webdriver.Chrome(ajuri)
     driver.get(url)
     return driver
 
@@ -45,14 +44,14 @@ def hae_taulukko(driver):
     return matriisi
 
 
-def main(kerta):
+def main(kerta, ajuri, url):
     """Pääfunktio, joka pyörittää nettiselainta
     Returns:
         Isoimmat ajat siirroissa, pienimmät ajat siirroissa, isoimman palikan,
         keskiarvon kuluneesta ajasta yhteen siirtoon
     """
 
-    driver = yhdista()
+    driver = yhdista(ajuri, url)
     try:
         cookie_prompt = driver.find_element(By.ID, "ez-accept-all")
         cookie_prompt.click()

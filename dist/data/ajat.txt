@@ -1,0 +1,241 @@
+
+Suurin laatta: 2048
+Suurin aika: 1.3388705253601074 s
+Pienin aika: 1.9788742065429688e-05 s
+Keskiarvot ajoista: 0.3119354481222453
+
+Suurin laatta: 1024
+Suurin aika: 0.944298505783081 s
+Pienin aika: 1.8596649169921875e-05 s
+Keskiarvot ajoista: 0.3217296048798205
+
+Suurin laatta: 2048
+Suurin aika: 0.8990364074707031 s
+Pienin aika: 1.7404556274414062e-05 s
+Keskiarvot ajoista: 0.3134115463993715
+
+Suurin laatta: 2048
+Suurin aika: 1.3511862754821777 s
+Pienin aika: 1.6927719116210938e-05 s
+Keskiarvot ajoista: 0.3542322403710131
+
+Suurin laatta: 512
+Suurin aika: 0.9867815971374512 s
+Pienin aika: 1.9788742065429688e-05 s
+Keskiarvot ajoista: 0.34722726666010345
+
+Suurin laatta: 1024
+Suurin aika: 1.2415399551391602 s
+Pienin aika: 1.9311904907226562e-05 s
+Keskiarvot ajoista: 0.37691617727279664
+
+Suurin laatta: 512
+Suurin aika: 1.011254072189331 s
+Pienin aika: 1.7404556274414062e-05 s
+Keskiarvot ajoista: 0.3135519551654016
+
+Suurin laatta: 2048
+Suurin aika: 1.2186169624328613 s
+Pienin aika: 2.193450927734375e-05 s
+Keskiarvot ajoista: 0.34598674163472914
+
+Suurin laatta: 1024
+Suurin aika: 1.0546612739562988 s
+Pienin aika: 1.8358230590820312e-05 s
+Keskiarvot ajoista: 0.31223897115718685
+
+Suurin laatta: 1024
+Suurin aika: 0.918562650680542 s
+Pienin aika: 1.9311904907226562e-05 s
+Keskiarvot ajoista: 0.3288248458634252
+
+Suurin laatta: 1024
+Suurin aika: 1.1970281600952148 s
+Pienin aika: 1.7881393432617188e-05 s
+Keskiarvot ajoista: 0.32720896663621724
+
+Suurin laatta: 2048
+Suurin aika: 1.2418358325958252 s
+Pienin aika: 3.0517578125e-05 s
+Keskiarvot ajoista: 0.35907097146062567
+
+Suurin laatta: 1024
+Suurin aika: 1.397106647491455 s
+Pienin aika: 1.7642974853515625e-05 s
+Keskiarvot ajoista: 0.3650470474803275
+
+Suurin laatta: 1024
+Suurin aika: 1.128049612045288 s
+Pienin aika: 1.9311904907226562e-05 s
+Keskiarvot ajoista: 0.36569701832279383
+
+Suurin laatta: 512
+Suurin aika: 1.6857101917266846 s
+Pienin aika: 2.7894973754882812e-05 s
+Keskiarvot ajoista: 0.3085873563057386
+
+Suurin laatta: 2048
+Suurin aika: 1.1900484561920166 s
+Pienin aika: 3.24249267578125e-05 s
+Keskiarvot ajoista: 0.38499189730412653
+
+Suurin laatta: 4096
+Suurin aika: 1.407024621963501 s
+Pienin aika: 1.7404556274414062e-05 s
+Keskiarvot ajoista: 0.3884372821148993
+
+Suurin laatta: 4096
+Suurin aika: 1.302367925643921 s
+Pienin aika: 2.6226043701171875e-05 s
+Keskiarvot ajoista: 0.37724288580474524
+
+Suurin laatta: 2048
+Suurin aika: 1.335996150970459 s
+Pienin aika: 1.9073486328125e-05 s
+Keskiarvot ajoista: 0.34427546801632397
+
+Suurin laatta: 2048
+Suurin aika: 1.2313690185546875 s
+Pienin aika: 1.811981201171875e-05 s
+Keskiarvot ajoista: 0.3232322155780631
+
+Suurin laatta: 2048
+Suurin aika: 0.8121042251586914 s
+Pienin aika: 1.71661376953125e-05 s
+Keskiarvot ajoista: 0.2980877638191108
+
+Suurin laatta: 2048
+Suurin aika: 1.0799715518951416 s
+Pienin aika: 1.7881393432617188e-05 s
+Keskiarvot ajoista: 0.33267935362097395
+
+Suurin laatta: 1024
+Suurin aika: 0.8604824542999268 s
+Pienin aika: 1.6689300537109375e-05 s
+Keskiarvot ajoista: 0.2930995850727476
+
+Suurin laatta: 4096
+Suurin aika: 1.1507883071899414 s
+Pienin aika: 1.8358230590820312e-05 s
+Keskiarvot ajoista: 0.3325133158286447
+
+Suurin laatta: 1024
+Suurin aika: 1.0649864673614502 s
+Pienin aika: 1.9073486328125e-05 s
+Keskiarvot ajoista: 0.33353166993459066
+
+Suurin laatta: 1024
+Suurin aika: 0.9624319076538086 s
+Pienin aika: 1.811981201171875e-05 s
+Keskiarvot ajoista: 0.29878533414414443
+
+Suurin laatta: 2048
+Suurin aika: 0.9808456897735596 s
+Pienin aika: 2.5272369384765625e-05 s
+Keskiarvot ajoista: 0.3128327479558795
+
+Suurin laatta: 1024
+Suurin aika: 1.0433835983276367 s
+Pienin aika: 1.7404556274414062e-05 s
+Keskiarvot ajoista: 0.29891161704331304
+
+Suurin laatta: 2048
+Suurin aika: 0.917546272277832 s
+Pienin aika: 2.0742416381835938e-05 s
+Keskiarvot ajoista: 0.31415395983030875
+
+Suurin laatta: 1024
+Suurin aika: 0.9959819316864014 s
+Pienin aika: 1.7404556274414062e-05 s
+Keskiarvot ajoista: 0.30052460366938294
+
+Suurin laatta: 1024
+Suurin aika: 1.0358083248138428 s
+Pienin aika: 1.6450881958007812e-05 s
+Keskiarvot ajoista: 0.29600743738515195
+
+Suurin laatta: 4096
+Suurin aika: 1.258242130279541 s
+Pienin aika: 1.7404556274414062e-05 s
+Keskiarvot ajoista: 0.32484023842323534
+
+Suurin laatta: 2048
+Suurin aika: 1.1873061656951904 s
+Pienin aika: 2.1457672119140625e-05 s
+Keskiarvot ajoista: 0.29346743448949586
+
+Suurin laatta: 1024
+Suurin aika: 0.9299511909484863 s
+Pienin aika: 1.5974044799804688e-05 s
+Keskiarvot ajoista: 0.2823357196174695
+
+Suurin laatta: 2048
+Suurin aika: 0.9126498699188232 s
+Pienin aika: 1.6927719116210938e-05 s
+Keskiarvot ajoista: 0.3106779390187751
+
+Suurin laatta: 1024
+Suurin aika: 0.8386213779449463 s
+Pienin aika: 1.71661376953125e-05 s
+Keskiarvot ajoista: 0.2937412627463071
+
+Suurin laatta: 2048
+Suurin aika: 0.8750107288360596 s
+Pienin aika: 1.7404556274414062e-05 s
+Keskiarvot ajoista: 0.315769238956382
+
+Suurin laatta: 2048
+Suurin aika: 1.197871208190918 s
+Pienin aika: 2.5987625122070312e-05 s
+Keskiarvot ajoista: 0.3267026765853891
+
+Suurin laatta: 1024
+Suurin aika: 1.227189540863037 s
+Pienin aika: 1.811981201171875e-05 s
+Keskiarvot ajoista: 0.2940928763073208
+
+Suurin laatta: 1024
+Suurin aika: 1.1014409065246582 s
+Pienin aika: 2.0265579223632812e-05 s
+Keskiarvot ajoista: 0.32126721881684805
+
+Suurin laatta: 2048
+Suurin aika: 1.0453619956970215 s
+Pienin aika: 1.7881393432617188e-05 s
+Keskiarvot ajoista: 0.3221692065711277
+
+Suurin laatta: 2048
+Suurin aika: 1.015737771987915 s
+Pienin aika: 1.811981201171875e-05 s
+Keskiarvot ajoista: 0.32671498289138295
+
+Suurin laatta: 2048
+Suurin aika: 0.8436243534088135 s
+Pienin aika: 2.47955322265625e-05 s
+Keskiarvot ajoista: 0.29414493173908113
+
+Suurin laatta: 1024
+Suurin aika: 1.0162832736968994 s
+Pienin aika: 1.9550323486328125e-05 s
+Keskiarvot ajoista: 0.31423173076355226
+
+Suurin laatta: 1024
+Suurin aika: 0.9270334243774414 s
+Pienin aika: 1.6450881958007812e-05 s
+Keskiarvot ajoista: 0.32020402205617804
+
+Suurin laatta: 2048
+Suurin aika: 1.616145372390747 s
+Pienin aika: 1.9311904907226562e-05 s
+Keskiarvot ajoista: 0.30548175615923745
+
+Suurin laatta: 1024
+Suurin aika: 1.1392016410827637 s
+Pienin aika: 1.5497207641601562e-05 s
+Keskiarvot ajoista: 0.28203589349985125
+
+Suurin laatta: 2048
+Suurin aika: 1.2508354187011719 s
+Pienin aika: 1.7404556274414062e-05 s
+Keskiarvot ajoista: 0.306302673534976
+

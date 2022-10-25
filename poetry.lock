@@ -75,6 +75,18 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
+name = "configparser"
+version = "5.3.0"
+description = "Updated configparser from stdlib for earlier Pythons."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.extras]
+docs = ["sphinx", "jaraco.packaging (>=9)", "rst.linker (>=1.9)", "jaraco.tidelift (>=1.4)"]
+testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "flake8 (<5)", "pytest-cov", "pytest-enabler (>=1.3)", "types-backports", "pytest-black (>=0.3.7)", "pytest-mypy (>=0.9.1)"]
+
+[[package]]
 name = "coverage"
 version = "6.4.4"
 description = "Code coverage measurement for Python"
@@ -423,7 +435,7 @@ h11 = ">=0.9.0,<1"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "394353dcf12761a18b03868c5a0d131ea9e43792463e7ef2d8100247391a369e"
+content-hash = "33c50e88b8cba760d3bd440e10f146c8fc7bd39913300c6534795f1e3a927206"
 
 [metadata.files]
 astroid = []
@@ -433,6 +445,7 @@ autopep8 = []
 certifi = []
 cffi = []
 colorama = []
+configparser = []
 coverage = []
 dill = []
 exceptiongroup = []
