@@ -73,6 +73,7 @@ def uusi_palikka(taulukko):
     paikka = mahdolliset[sijoitus]
     taulukko[paikka[0]][paikka[1]] = uusi
 
+
 def main_ratkoja():
     """Ratkojan peliä pyörittävä funktio
     """

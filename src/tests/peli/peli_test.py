@@ -74,12 +74,13 @@ class TestPeli(unittest.TestCase):
         self.assertEqual(arvo1["oikea"], True)
         self.assertEqual(arvo2["oikea"], False)
 
-    def test_uusi_palikka_luotu_oikein(self): 
-        random.seed(1) # Asetetaan testausta varten aina sama satunnaisuus, arvo 2
-        uusi_palikka(self.taulukko2) 
+    def test_uusi_palikka_luotu_oikein(self):
+        # Asetetaan testausta varten aina sama satunnaisuus, arvo 2
+        random.seed(1)
+        uusi_palikka(self.taulukko2)
 
         random.seed(11)
-        uusi_palikka(self.taulukko5) # Arvo 4
+        uusi_palikka(self.taulukko5)  # Arvo 4
 
         self.assertNotEqual(self.taulukko2_alkuperainen, self.taulukko2)
 

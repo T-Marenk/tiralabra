@@ -19,14 +19,14 @@ class TestRatkoja(unittest.TestCase):
                           [16, 2, 4, 2]]
 
         self.taulukko4 = [[8, 2, 4, 0],
-                        [4, 4, 2, 0],
-                        [2, 0, 0, 0],
-                        [0, 0, 0, 0]]
+                          [4, 4, 2, 0],
+                          [2, 0, 0, 0],
+                          [0, 0, 0, 0]]
 
         self.taulukko5 = [[2048, 128, 64, 2],
-                [1024, 256, 4, 16],
-                [16, 128, 16, 4],
-                [2, 4, 2, 8]]
+                          [1024, 256, 4, 16],
+                          [16, 128, 16, 4],
+                          [2, 4, 2, 8]]
 
     def test_tee_paatos_tekee_oikean_paatoksen(self):
         suunta1, _ = tee_paatos(self.taulukko1)

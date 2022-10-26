@@ -130,7 +130,7 @@ def mahdollisuus(taulukko, syvyys, tod, alpha, beta):
     tyhjat_paikat, maara = Taulukko.tyhjat(taulukko)
     if syvyys >= 4 and maara >= 8:
         return kay_lapi(taulukko)
-    if syvyys >= 6:
+    if syvyys == 6:
         return kay_lapi(taulukko)
     if maara == 1:
         return mahdollinen_loppu(taulukko, syvyys, tod, alpha, beta)
@@ -153,7 +153,7 @@ def mahdollisuus(taulukko, syvyys, tod, alpha, beta):
 
         if pisteet == 0:
             pisteet = kay_lapi(taulukko)
-        else:
+        elif yht_tod_keskiarvolle != 1:
             pisteet /= yht_tod_keskiarvolle
         if pisteet < pienin:
             pienin = pisteet
@@ -174,13 +174,12 @@ def tee_paatos(taulukko: list):
     """
 
     alku = time()
-    global suurin
-    
+
     alpha = -float('inf')
     beta = float('inf')
     suunta = maksimi(taulukko, 1, 1, alpha, beta)[1]
     loppu = time()
-    aika = loppu-alku 
+    aika = loppu-alku
     if suunta is not None:
         return suunta, aika
     return "lopeta", aika

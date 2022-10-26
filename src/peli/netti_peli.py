@@ -6,7 +6,7 @@ from collections import deque
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException
+from selenium.common.exceptions import NoSuchElementException
 from ratkoja.ratkoja import tee_paatos
 
 
@@ -19,6 +19,20 @@ def yhdista(ajuri, url):
     driver = webdriver.Chrome(ajuri)
     driver.get(url)
     return driver
+
+
+def evasteet(driver):
+    """Funktio, joka klikkaa evästeet pois ruudulta
+
+    Args:
+        driver: selaimen ajuri
+    """
+
+    try:
+        cookie_prompt = driver.find_element(By.ID, "ez-accept-all")
+        cookie_prompt.click()
+    except NoSuchElementException:
+        pass
 
 
 def hae_taulukko(driver):
@@ -44,6 +58,28 @@ def hae_taulukko(driver):
     return matriisi
 
 
+def hae_loppu_arvot(taulukko, ajat):
+    """Funktio, joka pelin lopuksi hakee kaikki halutut tiedot pelin lopuksi
+
+    Args:
+        Taulukko: pelin lopetus ruudukko
+        ajat: kaikki pelin ajat
+    Returns:
+        Suurimman laatan ruudukolla, suurimman ajan, pienimmän ajan sekä keskiarvon ajoista
+    """
+
+    suurin_arvo = -float('inf')
+    for rivi in taulukko:
+        suurin_rivi = max(rivi)
+        if suurin_rivi > suurin_arvo:
+            suurin_arvo = suurin_rivi
+    suurin_palikka = suurin_arvo
+    suurin = max(ajat)
+    pienin = min(ajat)
+    keskiarvo = sum(ajat)/len(ajat)
+    return suurin_palikka, suurin, pienin, keskiarvo
+
+
 def main(kerta, ajuri, url):
     """Pääfunktio, joka pyörittää nettiselainta
     Returns:
@@ -52,11 +88,8 @@ def main(kerta, ajuri, url):
     """
 
     driver = yhdista(ajuri, url)
-    try:
-        cookie_prompt = driver.find_element(By.ID, "ez-accept-all")
-        cookie_prompt.click()
-    except NoSuchElementException:
-        pass
+
+    evasteet(driver)
 
     body = driver.find_element(By.TAG_NAME, 'body')
 
@@ -82,20 +115,12 @@ def main(kerta, ajuri, url):
         try:
             jatka = driver.find_element(By.CLASS_NAME, "keep-playing-button")
             jatka.click()
-        except Exception as e:
+        except Exception as exc:
             pass
 
         time.sleep(0.05)
 
-    suurin_arvo = -float('inf')
-    for rivi in taulukko:
-        suurin_rivi = max(rivi)
-        if suurin_rivi > suurin_arvo:
-            suurin_arvo = suurin_rivi
-    suurin_palikka = suurin_arvo
-    suurin = max(ajat)
-    pienin = min(ajat)
-    keskiarvo = sum(ajat)/len(ajat)
+    suurin_palikka, suurin, pienin, keskiarvo = hae_loppu_arvot(taulukko, ajat)
 
     driver.close()
 
