@@ -44,10 +44,10 @@ class TestRatkoja(unittest.TestCase):
     def test_kay_lapi_palauttaa_oikean_arvon(self):
         pisteet = kay_lapi(self.taulukko1)
 
-        self.assertEqual(pisteet, 483844)
+        self.assertEqual(pisteet, 268551.0)
 
     def test_mahdollisuus_palauttaa_oikean_pistemaaran(self):
         pisteet = mahdollisuus(self.taulukko1, 1, 1.0, -
                                float('inf'), float('inf'))
 
-        self.assertEqual(round(pisteet, 2), 805686.8)
+        self.assertEqual(round(pisteet, 2), 578120.3)
