@@ -8,10 +8,35 @@ Ohjelman testaus on toteutettu automatisoiduilla unittesteillä sekä ohjelman s
 
 Pelin toimivuudesta vastaava `peli.py`-tiedosto testataan ![TestPeli](/src/tests/peli/peli_test.py)-luokalla. Pelin liikkumisesta vastaava `liiku.py`-tiedosto testataan ![TestPeliLiikkuminen](/src/tests/liikkuminen/liiku_test.py)-luokalla.
 
+### Pelin testauksen toteuttaminen
+
+Liikumisesta vastaavan funktion testaaminen tapahtuu seuraavasti:
+
+- Kaikki siirroista vastaavat funktiot testataan niin, että sille annetaan tietty peliruudukko ja liikuttamalla sitä tiettyyn suuntaan tulisi saada aina tietty taulukko. Esimerkiksi, jos on taulukko, jossa on kaksi 2-laattaa vierekkäin ensimmäisellä rivillä, tulisi saada rivi, jossa on 4-laatta vasemmalla ja muut tyhjiä
+
+- Mahdolliset liikkeet on helppo tarkistaa. On helppo nähdä jostain peliruudukosta, mihin suuntiin siinä voidaan liikkua, joten varmistamalla, että siitä vastaava funktio palauttaa samat suunnat, niin se toimii oikein
+
 ### Ratkojan testaaminen
 
 Peli-ratkojasta vastaava `ratkoja.py`-tiedosto testataan ![TestRatkoja](/src/tests/ratkoja/ratkoja_test.py)-luokalla. 
 
+
+### Ratkojan testien toteuttaminen
+
+Ratkojan testaaminen on suhteellisen hankalaa pelin satunnaisuuden vuoksi. Kuitenkin, jos katsotaan sitä hyvin pieneltä osalta, voidaan varmistaa sen oikeellisuus annetuilla tiedoilla. Esimerkiksi yhden päätöksen tekeminen tulisi olla aina sama, sillä algoritmin toiminta on determinististä. Jos sille annettaisiin esimerkiksi alla esitetty _Ruudukko 1_, niin se tulee tekemään joka kerta saman päätöksen, vaikka seuraavat siirrot riippuvat syntyneistä palasista.
+
+|||||
+|:-:|:-:|:-:|:-:|
+|0|0|0|0|
+|0|0|2|0|
+|0|2|0|0|
+|0|0|0|0|
+
+_Ruudukko 1_
+
+Lisäksi ollaan testattu algoritmin toimintaa niin, että on manuaalisesti lisätty uusiin ruudukkoihin laattoja ja varmistettu, että algoritmi tekee ns. oikean päätöksen sen heuristiikan mukaisesti.
+
+Heuristiikan testaaminen puolestaan on suhteelisen helppoa, laskemalla, että heuristiikka funktio antaa oikean määrän pisteitä kuin mitä ollaan käsin laskettu, voidaan sen varmistaa toimivan oikein.
 
 ### Testien ajaminen
 
