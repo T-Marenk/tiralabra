@@ -29,13 +29,7 @@ def liiku_vasen(taulukko: list):
                     e_paikka = tyhja
                     tyhja += 1
             else:
-                if tyhja is not None and tyhja < e_paikka:
-                    taulukko[k][tyhja] = i[j] * 2
-                    edellinen = None
-                    taulukko[k][e_paikka] = 0
-                    taulukko[k][j] = 0
-                    tyhja += 1
-                elif tyhja is not None and tyhja > e_paikka:
+                if tyhja is not None and tyhja > e_paikka:
                     taulukko[k][e_paikka] = i[j] * 2
                     edellinen = None
                     taulukko[k][j] = 0
@@ -75,13 +69,7 @@ def liiku_oikea(taulukko: list):
                     e_paikka = tyhja
                     tyhja -= 1
             else:
-                if tyhja is not None and tyhja > e_paikka:
-                    taulukko[k][tyhja] = i[j] * 2
-                    edellinen = None
-                    taulukko[k][e_paikka] = 0
-                    taulukko[k][j] = 0
-                    tyhja -= 1
-                elif tyhja is not None and tyhja < e_paikka:
+                if tyhja is not None and tyhja < e_paikka:
                     taulukko[k][e_paikka] = i[j] * 2
                     edellinen = None
                     taulukko[k][j] = 0
@@ -120,14 +108,8 @@ def liiku_ylos(taulukko: list):
                     taulukko[k][j] = 0
                     e_paikka = tyhja
                     tyhja += 1
-            else:
-                if tyhja is not None and tyhja < e_paikka:
-                    taulukko[tyhja][j] = i[j] * 2
-                    edellinen = None
-                    taulukko[e_paikka][j] = 0
-                    taulukko[k][j] = 0
-                    tyhja += 1
-                elif tyhja is not None and tyhja > e_paikka:
+            else: 
+                if tyhja is not None and tyhja > e_paikka:
                     taulukko[e_paikka][j] = i[j] * 2
                     edellinen = None
                     taulukko[k][j] = 0
@@ -165,14 +147,8 @@ def liiku_alas(taulukko: list):
                     taulukko[k][j] = 0
                     e_paikka = tyhja
                     tyhja -= 1
-            else:
-                if tyhja is not None and tyhja > e_paikka:
-                    taulukko[tyhja][j] = i[j] * 2
-                    edellinen = None
-                    taulukko[e_paikka][j] = 0
-                    taulukko[k][j] = 0
-                    tyhja -= 1
-                elif tyhja is not None and tyhja < e_paikka:
+            else: 
+                if tyhja is not None and tyhja < e_paikka:
                     taulukko[e_paikka][j] = i[j] * 2
                     edellinen = None
                     taulukko[k][j] = 0
