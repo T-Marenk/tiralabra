@@ -234,3 +234,8 @@ Suurin aika: 1.1392016410827637 s
 Pienin aika: 1.5497207641601562e-05 s
 Keskiarvot ajoista: 0.28203589349985125
 
+Suurin laatta: 512
+Suurin aika: 0.6627213954925537 s
+Pienin aika: {pienin} s
+Keskiarvot ajoista: {keskiarvo}
+
