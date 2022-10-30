@@ -14,6 +14,8 @@ Projektin tarkoituksena on luoda mahdollisimman tehokas 2048-pelin ratkoja hyöd
 
 ![Käyttöohje](./dokumentaatio/kayttoohje.md)
 
+[Pydoc3 dokumentaatio](https://htmlpreview.github.io/?https://github.com/T-Marenk/tiralabra/blob/main/dokumentaatio/html/src/index.html)
+
 ### Viikkoraportit
 
 ![Viikkoraportti 1](./dokumentaatio/viikkoraportit/viikkoraportti1.md)
