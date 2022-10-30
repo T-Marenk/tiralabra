@@ -20,7 +20,6 @@ Liikumisesta vastaavan funktion testaaminen tapahtuu seuraavasti:
 
 Peli-ratkojasta vastaava `ratkoja.py`-tiedosto testataan ![TestRatkoja](/src/tests/ratkoja/ratkoja_test.py)-luokalla. 
 
-
 ### Ratkojan testien toteuttaminen
 
 Ratkojan testaaminen on suhteellisen hankalaa pelin satunnaisuuden vuoksi. Kuitenkin, jos katsotaan sitä hyvin pieneltä osalta, voidaan varmistaa sen oikeellisuus annetuilla tiedoilla. Esimerkiksi yhden päätöksen tekeminen tulisi olla aina sama, sillä algoritmin toiminta on determinististä. Jos sille annettaisiin esimerkiksi alla esitetty _Ruudukko 1_, niin se tulee tekemään joka kerta saman päätöksen, vaikka seuraavat siirrot riippuvat syntyneistä palasista.
@@ -34,7 +33,7 @@ Ratkojan testaaminen on suhteellisen hankalaa pelin satunnaisuuden vuoksi. Kuite
 
 _Ruudukko 1_
 
-Lisäksi ollaan testattu algoritmin toimintaa niin, että on manuaalisesti lisätty uusiin ruudukkoihin laattoja ja varmistettu, että algoritmi tekee ns. oikean päätöksen sen heuristiikan mukaisesti.
+Lisäksi ollaan testattu algoritmin toimintaa niin, että on manuaalisesti lisätty uusiin ruudukkoihin laattoja ja varmistettu, että algoritmi tekee ns. oikean päätöksen sen heuristiikan mukaisesti näissä uusissa ruudukoissa. Vaikka testeissä ollaan kutsuttu päätöksiä oikeiksi päätöksiksi, tämä viittaa vain heuristiikan mukaiseen yhteen siirtoon. Satunnaisuuden vuoksi on vaikea sanoa, onko yksi siirto oikeasti oikea vai väärä.
 
 Heuristiikan testaaminen puolestaan on suhteelisen helppoa, laskemalla, että heuristiikka funktio antaa oikean määrän pisteitä kuin mitä ollaan käsin laskettu, voidaan sen varmistaa toimivan oikein.
 
@@ -51,6 +50,14 @@ poetry run invoke test
 Tämän hetkinen testikattavuus on 85%
 
 ![](./kuvat/coverage-report_6.png)
+
+## Komentorivi version testaaminen
+
+Komentorivi versiota ei täysin testata automatisoiduin testein, sillä on helpompaa katsoa sen oikeellisuus suorittamalla se.
+
+Joka siirron jälkeen tulostetaan peliruudukko komentoriville. Tästä on nähtävissä, että se ei ole muuttunut erilaiseksi edelliseen siirtoon nähden ja että se tulostuu oikein.
+
+Ratkojan yksikkötesteissä testataan jo valmiiksi, että se palauttaa suunnan oikeassa muodossa. Näin ollen siis suorittamalla komentorivi versio on nähtävissä, että se toimii oikein myös tässä, eli se liikkuu oikeaan suuntaan oikealla tavalla.
 
 ## Suorituskyvyn testaaminen
 
