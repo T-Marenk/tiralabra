@@ -1,6 +1,7 @@
 """2048-pelin rungosta vastaava koodi
 """
 
+import os
 from random import randint
 from peli.liiku import liiku_vasen, liiku_oikea, liiku_ylos, liiku_alas
 from ratkoja.ratkoja import tee_paatos
@@ -63,7 +64,6 @@ def uusi_palikka(taulukko):
             if nykyinen == 0:
                 maara += 1
                 mahdolliset.append((rivi, paikka))
-    print(maara)
     sijoitus = randint(0, maara-1)
     valinta = randint(1, 10)
     if valinta == 9:
@@ -79,12 +79,16 @@ def main_ratkoja(): # pragma: no cover
     """
 
     taulukko = uusi_peli()
+    aika = 0
     while True:
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print("Päätökseen kulunut aika:", aika, "s")
+        print()
         tulosta_taulukko(taulukko)
         taulukko_kopio = []
         for i in taulukko:
             taulukko_kopio.append(i.copy())
-        komento, _ = tee_paatos(taulukko_kopio)
+        komento, aika = tee_paatos(taulukko_kopio)
         if komento == "vasen":
             taulukko = liiku_vasen(taulukko)
         elif komento == "oikea":
