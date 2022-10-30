@@ -1,3 +1,3 @@
 *.html linguist-vendored
 
-dokumentaatio/ linguist-vendored
+dokumentaatio/* linguist-vendored
