@@ -47,9 +47,11 @@ poetry run invoke test
 
 ### Testikattavuus
 
-Tämän hetkinen testikattavuus on 85%
+Tämän hetkinen testikattavuus on 99%
 
-![](./kuvat/coverage-report_6.png)
+![](./kuvat/coverage_report_7.png)
+
+Puute testikattavuudessa on komentorivi version uuden pelin luomisessa, jossa en saanut toimimaan kunnolla sitä, että testattaisiin kaikki eri vaihtoehdot
 
 ## Komentorivi version testaaminen
 
