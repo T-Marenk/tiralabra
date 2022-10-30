@@ -13,7 +13,7 @@ def uusi_peli():
         Uuden peli-ruudukon
     """
     taulukko = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]
-                ]  # np.array([(0,0,0,0), (0,0,0,0), (0,0,0,0), (0,0,0,0)])
+                ]
     edellinen = None
     while True:
         sijoitus_y = randint(0, 3)
@@ -33,7 +33,7 @@ def uusi_peli():
     return taulukko
 
 
-def tulosta_taulukko(taulukko):
+def tulosta_taulukko(taulukko): # pragma: no cover
     """Funktio, joka tulostaa peli-ruudukon
 
     Args:
@@ -74,7 +74,7 @@ def uusi_palikka(taulukko):
     taulukko[paikka[0]][paikka[1]] = uusi
 
 
-def main_ratkoja():
+def main_ratkoja(): # pragma: no cover
     """Ratkojan peliä pyörittävä funktio
     """
 
@@ -85,9 +85,6 @@ def main_ratkoja():
         for i in taulukko:
             taulukko_kopio.append(i.copy())
         komento, _ = tee_paatos(taulukko_kopio)
-        if komento == "uusi":
-            taulukko = uusi_peli()
-            continue
         if komento == "vasen":
             taulukko = liiku_vasen(taulukko)
         elif komento == "oikea":

@@ -211,7 +211,7 @@ def mahdolliset_liikkeet(taulukko):
     return liikkeet
 
 
-def tulosta_taulukko(taulukko):
+def tulosta_taulukko(taulukko): # pragma: no cover
     """Funktio, joka tulostaa peli-ruudukon
 
     Args:

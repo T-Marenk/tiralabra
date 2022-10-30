@@ -79,12 +79,13 @@ class TestPeli(unittest.TestCase):
         random.seed(1)
         uusi_palikka(self.taulukko2)
 
-        random.seed(11)
-        uusi_palikka(self.taulukko5)  # Arvo 4
-
         self.assertNotEqual(self.taulukko2_alkuperainen, self.taulukko2)
 
         self.assertEqual(self.taulukko2_uusi, self.taulukko2)
+
+    def test_uusi_palikka_luotu_oikein_nelja(self):
+        random.seed(11)
+        uusi_palikka(self.taulukko5)
 
         self.assertNotEqual(self.taulukko5_alkuperainen, self.taulukko5)
 
