@@ -63,7 +63,7 @@ poetry run invoke start
 Ohjelma kysyy aluksi, montako kertaa haluat suorittaa ratkojan. Anna vastauksena **positiivinen kokonaisluku**, jonka jälkeen ohjelma pyörittää ratkojan
 halutun määrän kertoja
 
-
+![](./kuvat/suoritus_kerrat.png)
 
 Ohjelman aikana tulostetaan komentoriville kunkin siirron kohdalla kyseiseen siirtoon kulunut aika.
 
